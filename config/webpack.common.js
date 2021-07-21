@@ -1,7 +1,7 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const PrettierPlugin = require('prettier-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 //
@@ -31,7 +31,7 @@ module.exports = {
       ],
     }),
     new HtmlWebpackPlugin({
-      title: 'webpack Boilerplate',
+      title: 'CSS Hero',
       template: `${paths.src}/template.html`,
       filename: 'index.html',
     }),
@@ -39,7 +39,7 @@ module.exports = {
       logo: `${paths.src}/favicon/favicon.png`,
       favicons: {
         developerURL: false,
-      }
+      },
     }),
     new ESLintPlugin({
       files: ['.', 'src', 'config'],
@@ -61,6 +61,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
       '@': paths.src,
+      '@lib': `${paths.src}/lib`,
     },
   },
 };

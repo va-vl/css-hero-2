@@ -17,6 +17,9 @@
     "import/resolver": {
       "webpack": {
         "config": "config/webpack.common.js"
+      },
+      "alias": {
+        "map": [["@lib", "./src/lib"]]
       }
     }
   },
