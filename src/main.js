@@ -1,2 +1,5 @@
-const root = document.getElementById('root');
-root.innerHTML = `<h1>Welcome to css hero!</h1>`;
+import { App } from './App';
+import { View } from './components';
+import { Model } from './model';
+
+App.init(document.getElementById('root'), new Model(), View);
