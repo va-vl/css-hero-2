@@ -27,11 +27,16 @@ module.exports = merge(common, {
             options: {
               importLoaders: 2,
               sourceMap: false,
-              modules: true,
             },
           },
           'postcss-loader',
           'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: `${paths.src}/sass/breakpoint-variables.scss`,
+            },
+          },
         ],
       },
     ],

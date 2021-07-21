@@ -1,9 +1,13 @@
 import { MyComponent } from '@lib';
+import './LevelDisplay.scss';
 
 export class LevelDisplay extends MyComponent {
-  constructor() {
+  /**
+   * @param {String} outerClassNames classNames from outer component
+   */
+  constructor(outerClassNames) {
     super({
-      classNames: 'level-display',
+      classNames: `${outerClassNames} level-display`,
       textContent: 'level display placeholder',
     });
   }

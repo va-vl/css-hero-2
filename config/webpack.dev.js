@@ -26,16 +26,20 @@ module.exports = merge(common, {
           'style-loader',
           {
             loader: 'css-loader',
-            options: { sourceMap: true, importLoaders: 1, modules: true },
+            options: { sourceMap: true, importLoaders: 1 },
           },
           { loader: 'postcss-loader', options: { sourceMap: true } },
           { loader: 'sass-loader', options: { sourceMap: true } },
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: `${paths.src}/sass/breakpoint-variables.scss`,
+            },
+          },
         ],
       },
     ],
   },
 
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 });

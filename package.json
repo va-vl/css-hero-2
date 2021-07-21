@@ -18,6 +18,7 @@
     "start:dev": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "start:build": "npm run build && http-server ./build -p 8080",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
+    "serve": "http-server ./build -p 8080",
     "lint": "eslint . src config || true"
   },
   "devDependencies": {
@@ -47,10 +48,14 @@
     "prettier-webpack-plugin": "^1.2.0",
     "sass": "^1.35.2",
     "sass-loader": "^12.1.0",
+    "sass-resources-loader": "^2.2.3",
     "style-loader": "^3.1.0",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
   }
 }

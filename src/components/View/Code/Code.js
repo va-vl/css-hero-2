@@ -1,7 +1,14 @@
 import { MyComponent } from '@lib';
+import './Code.scss';
 
 export class Code extends MyComponent {
-  constructor() {
-    super({ classNames: 'code', textContent: 'code placeholder' });
+  /**
+   * @param {String} outerClassNames classNames from outer component
+   */
+  constructor(outerClassNames) {
+    super({
+      classNames: `${outerClassNames} code`,
+      textContent: 'code placeholder',
+    });
   }
 }

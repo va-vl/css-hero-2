@@ -1,5 +1,5 @@
 export class Model {
-  constructor(levels = []) {
-    this.levels = levels;
+  constructor(levelsData) {
+    this.levelsData = levelsData;
   }
 }

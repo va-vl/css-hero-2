@@ -1,3 +1,4 @@
+import './View.scss';
 import { MyComponent } from '@lib';
 import { Menu } from './Menu/Menu';
 import { Header } from './Header/Header';
@@ -11,26 +12,27 @@ export class View extends MyComponent {
    * @param {Model} model data model
    */
   constructor(model) {
-    super({ tagName: 'div', classNames: 'view' });
+    super({ tagName: 'main', classNames: 'view' });
 
-    this.model = model;
-    this.menu = new Menu();
-    this.header = new Header();
-    this.levelDisplay = new LevelDisplay();
-    this.code = new Code();
-    this.footer = new Footer();
+    this.header = new Header('view__header');
+    this.levelDisplay = new LevelDisplay('view__level-display');
+    this.code = new Code('view__code');
+    this.footer = new Footer('view__footer');
+    this.menu = new Menu('view__menu', model);
 
-    const mainWrapper = new MyComponent({
-      tagName: 'main',
-      classNames: 'view__main main',
+    const grid = MyComponent.createHTMLElement({ classNames: 'view__grid' });
+    const wrapper = MyComponent.createHTMLElement({
+      classNames: 'view__wrapper',
     });
-    mainWrapper.addChildren(
-      this.header,
-      this.levelDisplay,
-      this.code,
-      this.footer
-    );
 
-    this.addChildren(mainWrapper, this.menu);
+    wrapper.append(
+      this.header.HTMLElement,
+      this.levelDisplay.HTMLElement,
+      this.code.HTMLElement,
+      this.footer.HTMLElement
+    );
+    grid.append(wrapper, this.menu.HTMLElement);
+
+    this.addChildren(grid);
   }
 }
