@@ -1,5 +1,6 @@
-import { MyComponent } from '@lib';
 import './Header.scss';
+import { MyComponent } from '@lib';
+import { KeyButton } from '@components/common';
 
 export class Header extends MyComponent {
   /**
@@ -7,8 +8,36 @@ export class Header extends MyComponent {
    */
   constructor(outerClassNames) {
     super({
+      tagName: 'header',
       classNames: `${outerClassNames} header`,
-      textContent: 'header placeholder',
     });
+
+    const fancy = MyComponent.createHTMLElement({
+      tagName: 'span',
+      classNames: 'header__logo-fancy',
+      textContent: 'CSS',
+    });
+    const plain = MyComponent.createHTMLElement({
+      tagName: 'span',
+      classNames: 'header__logo-plain',
+      textContent: 'hero',
+    });
+    const logo = MyComponent.createHTMLElement({
+      tagName: 'h1',
+      classNames: 'header__logo',
+    });
+
+    logo.append(fancy, plain);
+
+    this.menuButton = new KeyButton({
+      classNames: 'header__button header__button--menu',
+      textContent: 'Show menu',
+    });
+    this.helpButton = new KeyButton({
+      classNames: 'header__button header__button--key',
+      textContent: "Help me, I'm stuck!",
+    });
+
+    this.addChildren(logo, this.menuButton, this.helpButton);
   }
 }
