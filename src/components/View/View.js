@@ -12,27 +12,21 @@ export class View extends MyComponent {
    * @param {Model} model data model
    */
   constructor(model) {
-    super({ tagName: 'main', classNames: 'view' });
+    super({ tagName: 'main', classNames: ['view', 'view__grid'] });
 
-    this.header = new Header('view__header');
-    this.levelDisplay = new LevelDisplay('view__level-display');
-    this.code = new Code('view__code');
-    this.footer = new Footer('view__footer');
-    this.menu = new Menu('view__menu', model);
+    this.header = new Header(['view__header']);
+    this.levelDisplay = new LevelDisplay(['view__level-display']);
+    this.code = new Code(['view__code']);
+    this.footer = new Footer(['view__footer']);
+    this.menu = new Menu(['view__menu'], model);
 
-    const grid = MyComponent.createHTMLElement({ classNames: 'view__grid' });
-    const wrapper = MyComponent.createHTMLElement({
-      classNames: 'view__wrapper',
-    });
-
-    wrapper.append(
-      this.header.HTMLElement,
-      this.levelDisplay.HTMLElement,
-      this.code.HTMLElement,
-      this.footer.HTMLElement
+    const wrapper = MyComponent.createHTMLElement(
+      {
+        classNames: ['view__wrapper'],
+      },
+      [this.header, this.levelDisplay, this.code, this.footer]
     );
-    grid.append(wrapper, this.menu.HTMLElement);
 
-    this.addChildren(grid);
+    this.addChildren(wrapper, this.menu);
   }
 }

@@ -8,12 +8,17 @@
  * MyComponent constructor argument
  * @typedef {Object} MyComponentProps
  * @property {String} tagName component HTML tag
- * @property {String | null} classNames space-delimited string of CSS class names
- * @property {String | null} textContent html element's text content
+ * @property {String[] | void} classNames array of CSS class names
+ * @property {String | void} textContent html element's text content
  * @property {attrsObject} attrs html element's attributes
  */
 
 const ALLOWED_ATTR_VALUE_TYPES = ['string', 'number', 'boolean'];
+const checkClassNameType = (className) => {
+  if (typeof className !== 'string') {
+    throw new TypeError('MyComponent className must be string!');
+  }
+};
 
 export class MyComponent {
   /**
@@ -41,32 +46,28 @@ export class MyComponent {
   }
 
   /**
-   * Adds classNames to HTMLELement
-   * @param {String} classNames space-delimited string of CSS class names
+   * Adds classNames to HTMLElement
+   * @param {String[]} classNames space-delimited string of CSS class names
    * @returns {void}
    */
   addClasses(classNames) {
-    if (typeof classNames === 'string') {
-      this.HTMLElement.classList.add(...classNames.split(' '));
-      return;
-    }
-
-    throw new TypeError('MyComponent className must be string!');
+    classNames.forEach((className) => {
+      checkClassNameType(className);
+      this.HTMLElement.classList.add(className);
+    });
   }
 
   /**
    * Removes classNames from HTMLElement
    * If classes from classNames don't exist on HTMLElement, does nothing
-   * @param {String} classNames space-delimited string of CSS class names
+   * @param {String[]} classNames space-delimited string of CSS class names
    * @returns {void}
    */
   removeClasses(classNames) {
-    if (typeof classNames === 'string') {
-      this.HTMLElement.classList.remove(...classNames.split(' '));
-      return;
-    }
-
-    throw new TypeError('MyComponent className must be string!');
+    classNames.forEach((className) => {
+      checkClassNameType(className);
+      this.HTMLElement.classList.remove(className);
+    });
   }
 
   /**
@@ -100,7 +101,7 @@ export class MyComponent {
    */
   removeAttrs(attrsList) {
     attrsList.forEach((attrName) => {
-      if (typeof attrName === 'string') {
+      if (typeof attrName !== 'string') {
         this.HTMLElement.removeAttribute(attrName);
         return;
       }
@@ -126,7 +127,7 @@ export class MyComponent {
   }
 
   /**
-   *
+   * Append HTML elements as children of this HTMLElement
    * @param  {...(HTMLElement | MyComponent)[]} children
    */
   addChildren(...children) {
@@ -147,10 +148,13 @@ export class MyComponent {
 
   /**
    * Creates a new instance of MyComponent but returns only its HTMLElement
-   * @param {MyComponentProps} props
+   * @param {MyComponentProps} props component props
+   * @param  {(HTMLElement | MyComponent)[]} children array of HTMLElements or MyComponent instances
    * @returns {HTMLElement} HTMLElement created from props
    */
-  static createHTMLElement(props) {
-    return new this(props).HTMLElement;
+  static createHTMLElement(props, children = []) {
+    const instance = new this(props);
+    instance.addChildren(...children);
+    return instance.HTMLElement;
   }
 }

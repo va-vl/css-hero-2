@@ -6,8 +6,6 @@
 .view__grid {
   display: grid;
   grid-template-columns: auto minmax(350px, 20%);
-  width: 100%;
-  height: 100vh;
 }
 
 .view__wrapper {

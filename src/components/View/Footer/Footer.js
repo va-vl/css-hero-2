@@ -4,33 +4,35 @@ import './Footer.scss';
 
 export class Footer extends MyComponent {
   /**
-   * @param {String} outerClassNames classNames from outer component
+   * @param {String[]} outerClassNames classNames from outer component
    */
   constructor(outerClassNames) {
     super({
       tagName: 'footer',
-      classNames: `${outerClassNames} footer`,
+      classNames: [...outerClassNames, 'footer'],
     });
 
     const githubImage = MyComponent.createHTMLElement({
       tagName: 'img',
-      classNames: 'footer__github-image',
+      classNames: ['footer__github-image'],
       attrs: {
         src: githubLogo,
         alt: 'GitHub logo',
         width: 100,
       },
     });
-    const githubLink = MyComponent.createHTMLElement({
-      tagName: 'a',
-      classNames: 'footer__github-link',
-      attrs: {
-        href: 'https://github.com/va-z/css-hero-2',
-        target: '_blank',
-      },
-    });
 
-    githubLink.appendChild(githubImage);
+    const githubLink = MyComponent.createHTMLElement(
+      {
+        tagName: 'a',
+        classNames: ['footer__github-link'],
+        attrs: {
+          href: 'https://github.com/va-z/css-hero-2',
+          target: '_blank',
+        },
+      },
+      [githubImage]
+    );
 
     const footerText = MyComponent.createHTMLElement({
       tagName: 'p',

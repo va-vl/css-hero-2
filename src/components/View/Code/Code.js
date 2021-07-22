@@ -7,7 +7,7 @@ export class Code extends MyComponent {
    */
   constructor(outerClassNames) {
     super({
-      classNames: `${outerClassNames} code`,
+      classNames: [...outerClassNames, 'code'],
       textContent: 'code placeholder',
     });
   }

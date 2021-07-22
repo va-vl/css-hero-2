@@ -38,24 +38,6 @@
 }
 
 @media (max-width: $width-tablet) {
-  .header {
-    padding: 3px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .header__button {
-    width: fit-content;
-
-    &--menu {
-      justify-self: center;
-    }
-
-    &--help {
-      justify-self: end;
-    }
-  }
-
   .header__logo {
     width: 60px;
     height: 40px;
