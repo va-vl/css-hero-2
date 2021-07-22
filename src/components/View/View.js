@@ -1,10 +1,10 @@
-import './View.scss';
 import { MyComponent } from '@lib';
 import { Menu } from './Menu/Menu';
 import { Header } from './Header/Header';
 import { LevelDisplay } from './LevelDisplay/LevelDisplay';
 import { Code } from './Code/Code';
 import { Footer } from './Footer/Footer';
+import './View.scss';
 
 export class View extends MyComponent {
   /**

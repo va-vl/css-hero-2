@@ -1,6 +1,6 @@
-import './Header.scss';
 import { MyComponent } from '@lib';
 import { KeyButton } from '@components/common';
+import './Header.scss';
 
 export class Header extends MyComponent {
   /**

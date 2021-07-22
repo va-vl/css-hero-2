@@ -33,7 +33,7 @@ module.exports = merge(common, {
           {
             loader: 'sass-resources-loader',
             options: {
-              resources: `${paths.src}/sass/breakpoint-variables.scss`,
+              resources: `${paths.src}/sass/breakpoints.scss`,
             },
           },
         ],

@@ -99,6 +99,7 @@ module.exports = {
     alias: {
       '@': paths.src,
       '@lib': `${paths.src}/lib`,
+      '@images': `${paths.src}/assets/images`,
       '@components/common': `${paths.src}/components/common`,
     },
   },

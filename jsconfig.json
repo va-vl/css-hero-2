@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@lib": ["src/lib"],
+      "@images": ["src/assets/images"],
       "@components/common": ["src/components/common"]
     }
   }
