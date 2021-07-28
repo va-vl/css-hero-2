@@ -1,37 +1,37 @@
-.view {
+.app {
   width: 100%;
   height: 100vh;
 }
 
-.view__grid {
+.app__grid {
   display: grid;
   grid-template-columns: auto minmax(350px, 20%);
 }
 
-.view__wrapper {
+.app__wrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow-y: scroll;
 }
 
-.view__footer {
+.app__footer {
   margin: auto auto 0;
 }
 
 @media (max-width: $width-tablet) {
-  .view__grid {
+  .app__grid {
     display: block;
     min-width: 490px;
   }
 
-  .view__wrapper {
+  .app__wrapper {
     position: relative;
     height: 100vh;
     overflow-x: hidden;
   }
 
-  .view__menu {
+  .app__menu {
     display: none;
   }
 }

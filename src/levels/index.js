@@ -1,1 +1,1 @@
-export * from './levels.service';
+export { default as levels } from './levels.json';

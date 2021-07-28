@@ -100,7 +100,7 @@ module.exports = {
       '@': paths.src,
       '@lib': `${paths.src}/lib`,
       '@images': `${paths.src}/assets/images`,
-      '@components/common': `${paths.src}/components/common`,
+      '@components/common': `${paths.src}/components/_common`,
     },
   },
 };

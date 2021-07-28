@@ -1,7 +1,7 @@
 /**
  * retrieves item from storage by key
  * @param {String} key
- * @returns {string}
+ * @returns {any}
  */
 export const get = (key) => {
   if (typeof key !== 'string') {
@@ -13,7 +13,7 @@ export const get = (key) => {
   try {
     return JSON.parse(item);
   } catch {
-    return item;
+    throw new TypeError('Cannot deserialize localStorage item');
   }
 };
 

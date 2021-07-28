@@ -12,22 +12,23 @@ export class Header extends MyComponent {
       classNames: [...outerClassNames, 'header'],
     });
 
-    const fancy = MyComponent.createHTMLElement({
-      tagName: 'span',
-      classNames: ['header__logo-fancy'],
-      textContent: 'CSS',
-    });
-    const plain = MyComponent.createHTMLElement({
-      tagName: 'span',
-      classNames: ['header__logo-plain'],
-      textContent: 'hero',
-    });
     const logo = MyComponent.createHTMLElement(
       {
         tagName: 'h1',
         classNames: ['header__logo'],
       },
-      [fancy, plain]
+      [
+        MyComponent.createHTMLElement({
+          tagName: 'span',
+          classNames: ['header__logo-fancy'],
+          textContent: 'CSS',
+        }),
+        MyComponent.createHTMLElement({
+          tagName: 'span',
+          classNames: ['header__logo-plain'],
+          textContent: 'hero',
+        }),
+      ]
     );
 
     this.menuButton = new KeyButton({
