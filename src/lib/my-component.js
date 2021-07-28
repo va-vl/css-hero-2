@@ -14,6 +14,7 @@
  */
 
 const ALLOWED_ATTR_VALUE_TYPES = ['string', 'number', 'boolean'];
+
 const checkClassNameType = (className) => {
   if (typeof className !== 'string') {
     throw new TypeError('MyComponent className must be string!');
@@ -130,7 +131,7 @@ export class MyComponent {
    * Append HTML elements as children of this HTMLElement
    * @param  {...(HTMLElement | MyComponent)[]} children
    */
-  addChildren(...children) {
+  appendChildren(...children) {
     children.forEach((child) => {
       if (child instanceof Node) {
         this.HTMLElement.appendChild(child);
@@ -142,19 +143,7 @@ export class MyComponent {
         return;
       }
 
-      throw new TypeError('MyComponent addChildren can append only Node!');
+      throw new TypeError('MyComponent appendChildren can append only Node!');
     });
-  }
-
-  /**
-   * Creates a new instance of MyComponent but returns only its HTMLElement
-   * @param {MyComponentProps} props component props
-   * @param  {(HTMLElement | MyComponent)[]} children array of HTMLElements or MyComponent instances
-   * @returns {HTMLElement} HTMLElement created from props
-   */
-  static createHTMLElement(props, children = []) {
-    const instance = new this(props);
-    instance.addChildren(...children);
-    return instance.HTMLElement;
   }
 }

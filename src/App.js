@@ -9,21 +9,16 @@ export class App extends MyComponent {
   constructor(store) {
     super({ tagName: 'main', classNames: ['app', 'app__grid'] });
 
+    const menu = new Menu(['app__menu'], store);
     const header = new Header(['app__header']);
     const levelDisplay = new LevelDisplay(['app__level-display'], store);
     const code = new Code(['app__code'], store);
     const footer = new Footer(['app__footer']);
 
-    const wrapper = MyComponent.createHTMLElement(
-      {
-        classNames: ['app__wrapper'],
-      },
-      [header, levelDisplay, code, footer]
-    );
+    const wrapper = new MyComponent({ classNames: ['app__wrapper'] });
+    wrapper.appendChildren(header, levelDisplay, code, footer);
 
-    const menu = new Menu(['app__menu'], store);
-
-    this.addChildren(wrapper, menu);
+    this.appendChildren(wrapper, menu);
   }
 
   /**
@@ -33,9 +28,5 @@ export class App extends MyComponent {
   static init(root, store) {
     const app = new App(store).HTMLElement;
     root.appendChild(app);
-  }
-
-  static createHTMLElement() {
-    throw new Error('Must initialize app with App.init()');
   }
 }

@@ -12,7 +12,15 @@ export class Footer extends MyComponent {
       classNames: [...outerClassNames, 'footer'],
     });
 
-    const githubImage = MyComponent.createHTMLElement({
+    const githubLink = new MyComponent({
+      tagName: 'a',
+      classNames: ['footer__github-link'],
+      attrs: {
+        href: 'https://github.com/va-z/css-hero-2',
+        target: '_blank',
+      },
+    });
+    const githubImage = new MyComponent({
       tagName: 'img',
       classNames: ['footer__github-image'],
       attrs: {
@@ -21,24 +29,13 @@ export class Footer extends MyComponent {
         width: 100,
       },
     });
+    githubLink.appendChildren(githubImage);
 
-    const githubLink = MyComponent.createHTMLElement(
-      {
-        tagName: 'a',
-        classNames: ['footer__github-link'],
-        attrs: {
-          href: 'https://github.com/va-z/css-hero-2',
-          target: '_blank',
-        },
-      },
-      [githubImage]
-    );
-
-    const footerText = MyComponent.createHTMLElement({
+    const footerText = new MyComponent({
       tagName: 'p',
       textContent: 'Made by va-z in 2021',
     });
 
-    this.addChildren(githubLink, footerText);
+    this.appendChildren(githubLink, footerText);
   }
 }

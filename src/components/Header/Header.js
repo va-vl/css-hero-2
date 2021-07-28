@@ -12,34 +12,32 @@ export class Header extends MyComponent {
       classNames: [...outerClassNames, 'header'],
     });
 
-    const logo = MyComponent.createHTMLElement(
-      {
-        tagName: 'h1',
-        classNames: ['header__logo'],
-      },
-      [
-        MyComponent.createHTMLElement({
-          tagName: 'span',
-          classNames: ['header__logo-fancy'],
-          textContent: 'CSS',
-        }),
-        MyComponent.createHTMLElement({
-          tagName: 'span',
-          classNames: ['header__logo-plain'],
-          textContent: 'hero',
-        }),
-      ]
-    );
+    const logo = new MyComponent({
+      tagName: 'h1',
+      classNames: ['header__logo'],
+    });
+    const logoFancy = new MyComponent({
+      tagName: 'span',
+      classNames: ['header__logo-fancy'],
+      textContent: 'CSS',
+    });
+    const logoPlain = new MyComponent({
+      tagName: 'span',
+      classNames: ['header__logo-plain'],
+      textContent: 'hero',
+    });
 
-    this.menuButton = new KeyButton({
+    logo.appendChildren(logoFancy, logoPlain);
+
+    const menuButton = new KeyButton({
       classNames: ['header__button', 'header__button--menu'],
       textContent: 'Show menu',
     });
-    this.helpButton = new KeyButton({
+    const helpButton = new KeyButton({
       classNames: ['header__button', 'header__button--help'],
       textContent: "Help me, I'm stuck!",
     });
 
-    this.addChildren(logo, this.menuButton, this.helpButton);
+    this.appendChildren(logo, menuButton, helpButton);
   }
 }
