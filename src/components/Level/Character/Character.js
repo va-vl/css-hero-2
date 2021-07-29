@@ -1,15 +1,24 @@
-// import { MyComponent } from '@lib';
+import { MyComponent } from '@lib';
 import { highlight } from '../../../utils';
+import './Character.scss';
 
-const PAIRED_TAGS = ['wolf', 'boar'];
-
-class Character {
-  constructor(obj) {
-    this.createDisplayIcon(obj);
-    this.createCodeText(obj);
+export class Character {
+  /**
+   * Creates an html element and text representation of a character & binds them together
+   * @param {Object} charProps properties of a character
+   * @property {String} tagName character HTML tag name
+   * @property {String[]} classNames character CSS classes
+   * @property {Object<string, (string | number | boolean | void)>} attrs character HTML attributes
+   * @property {Character[]} children nested characters
+   */
+  constructor(charProps) {
+    this.createLevelDisplayIcon(charProps);
+    this.createCodeText(charProps);
     this.createToolTip();
 
-    this.characterCode = Element.DOM({ classNames: 'char__html' });
+    this.characterCode = new MyComponent({
+      classNames: ['char__code-text'],
+    }).HTMLElement;
 
     this.characterIcon.addEventListener('mouseover', (event) => {
       this.handleHoverEvents(event, this.characterIcon);
@@ -28,35 +37,48 @@ class Character {
     });
   }
 
-  createDisplayIcon(obj) {
-    let str = `<${obj.element} class="${obj.className || ''}${
-      obj.target ? ' target' : ''
-    }"`;
-    str = Character.addParam(obj, 'id', str);
-    str = Character.addParam(obj, 'color', str);
-    str += `></${obj.element}>`;
+  createLevelDisplayIcon({ tagName, classNames, attrs }) {
+    let str = `<${tagName} `;
 
-    const div = Element.DOM();
+    if (classNames) {
+      str += Character.createClassNamesString(classNames);
+    }
+
+    if (attrs) {
+      str += Character.createAttrsString(attrs);
+    }
+
+    str += `></${tagName}>`;
+
+    const div = new MyComponent().HTMLElement;
     div.innerHTML = str;
+
     this.characterIcon = div.firstElementChild;
   }
 
-  createCodeText(obj) {
-    let str = `${obj.element}`;
-    str = Character.addParam(obj, 'className', str);
-    str = Character.addParam(obj, 'id', str);
-    str = Character.addParam(obj, 'color', str);
+  createCodeText({ tagName, classNames, attrs, children }) {
+    let str = `${tagName}`;
 
-    if (PAIRED_TAGS.includes(obj.element)) {
+    if (classNames) {
+      str += Character.createClassNamesString(classNames);
+    }
+
+    if (attrs) {
+      str += Character.createClassNamesString(classNames);
+    }
+
+    if (children) {
       this.openingTag = highlight(`<${str}>`);
-      this.closingTag = highlight(`</${obj.element}>`);
+      this.closingTag = highlight(`</${tagName}>`);
     } else {
       this.openingTag = highlight(`<${str} />`);
     }
   }
 
   createToolTip() {
-    this.toolTip = Element.DOM({ classNames: 'char__tooltip' });
+    this.toolTip = new MyComponent({
+      classNames: ['char__tooltip'],
+    }).HTMLElement;
     this.toolTip.insertAdjacentHTML('afterBegin', this.openingTag);
 
     if (this.closingTag) {
@@ -83,7 +105,7 @@ class Character {
   showHover() {
     const { top, right } = this.characterIcon.getBoundingClientRect();
     this.characterIcon.classList.add('char--hover');
-    this.characterCode.classList.add('char__html--hover');
+    this.characterCode.classList.add('char__code--hover');
 
     this.toolTip.style = `position: fixed; top: ${top - 20}px; left: ${
       right + 10
@@ -93,22 +115,19 @@ class Character {
 
   removeHover() {
     this.characterIcon.classList.remove('char--hover');
-    this.characterCode.classList.remove('char__html--hover');
+    this.characterCode.classList.remove('char__code--hover');
     this.toolTip.remove();
     this.toolTip.style = '';
   }
 
-  static addParam(source, param, str) {
-    let result = str;
+  static createClassNamesString(classNames) {
+    return ` class="${classNames.join(' ')}"`;
+  }
 
-    if (source[param]) {
-      result += ` ${param === 'className' ? 'class' : param}="${
-        source[param]
-      }"`;
-    }
-
-    return result;
+  static createAttrsString(attrs) {
+    return Object.entries(attrs).reduce(
+      (result, [attr, value]) => `${result} ${attr}=${value}`,
+      ''
+    );
   }
 }
-
-export default Character;

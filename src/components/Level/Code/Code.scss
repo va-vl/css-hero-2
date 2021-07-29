@@ -1,0 +1,17 @@
+.code {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 14px;
+  color: var(--color-font-light);
+}
+
+.code__flex {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  box-sizing: border-box;
+  min-width: 600px;
+  margin: 20px auto;
+  border-radius: 15px;
+  border: 7px solid var(--color-background-darker);
+  background-color: var(--color-background-darker);
+}

@@ -1,38 +1,38 @@
 wolf {
-  background-image: url("./assets/images/characters/wolf.png");
+  background-image: url('../../../assets/images/characters/wolf.png');
 
-  &[color="red"] {
-    background-image: url("./assets/images/characters/wolf_red.png");
+  &[color='red'] {
+    background-image: url('../../../assets/images/characters/wolf_red.png');
   }
 
-  &[color="brown"] {
-    background-image: url("./assets/images/characters/wolf_brown.png");
+  &[color='brown'] {
+    background-image: url('../../../assets/images/characters/wolf_brown.png');
   }
 }
 
 boar {
-  background-image: url("./assets/images/characters/boar.png");
+  background-image: url('../../../assets/images/characters/boar.png');
 }
 
 orc {
-  background-image: url("./assets/images/characters/orc_warrior.png");
+  background-image: url('../../../assets/images/characters/orc_warrior.png');
 }
 
 archer {
-  background-image: url("./assets/images/characters/orc_archer.png");
+  background-image: url('../../../assets/images/characters/orc_archer.png');
 }
 
 chief {
-  background-image: url("./assets/images/characters/orc_chief.png");
+  background-image: url('../../../assets/images/characters/orc_chief.png');
 }
 
 wizard {
-  &[color="ruby"] {
-    background-image: url("./assets/images/characters/wizard_red.png");
+  &[color='ruby'] {
+    background-image: url('../../../assets/images/characters/wizard_red.png');
   }
 
-  &[color="blue"] {
-    background-image: url("./assets/images/characters/wizard_blue.png");
+  &[color='blue'] {
+    background-image: url('../../../assets/images/characters/wizard_blue.png');
   }
 }
 
@@ -62,7 +62,7 @@ boar {
   position: relative;
 
   &::before {
-    content: "";
+    content: '';
 
     position: absolute;
     left: 0;
@@ -86,7 +86,7 @@ chief.char--hover,
   }
 }
 
-.char__html {
+.char__code-text {
   padding-left: 15px;
   user-select: none;
 

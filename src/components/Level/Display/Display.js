@@ -13,15 +13,21 @@ export class Display extends MyComponent {
 
     this.title = new MyComponent({
       tagName: 'h2',
-      classNames: ['level-display__title'],
+      classNames: ['display__title'],
     });
-    this.chars = new MyComponent({ classNames: ['level-display__chars'] });
+    this.chars = new MyComponent({ classNames: ['display__chars'] });
 
-    const grass = new MyComponent({ classNames: ['level-display__grass'] });
-    const ground = new MyComponent({ classNames: ['level-display__ground'] });
-    const wrapper = new MyComponent({ classNames: ['level-display__wrapper'] });
+    const grass = new MyComponent({ classNames: ['display__grass'] });
+    const ground = new MyComponent({ classNames: ['display__ground'] });
+    const wrapper = new MyComponent({ classNames: ['display__wrapper'] });
 
     wrapper.appendChildren(this.chars, grass, ground);
     this.appendChildren(this.title, wrapper);
+  }
+
+  renderLevel(levelData, iconFragment) {
+    this.title.setTextContent(levelData.title);
+    this.chars.clearContent();
+    this.chars.HTMLElement.append(iconFragment);
   }
 }
