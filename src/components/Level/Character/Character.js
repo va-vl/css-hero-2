@@ -1,5 +1,4 @@
-import { MyComponent } from '@lib';
-import { highlight } from '../../../utils';
+import { createCharacterComponents } from './create-character-components';
 import './Character.scss';
 
 export class Character {
@@ -9,81 +8,32 @@ export class Character {
    * @property {String} tagName character HTML tag name
    * @property {String[]} classNames character CSS classes
    * @property {Object<string, (string | number | boolean | void)>} attrs character HTML attributes
-   * @property {Character[]} children nested characters
+   * @property {Object[]} children nested characters as childProps array
    */
   constructor(charProps) {
-    this.createLevelDisplayIcon(charProps);
-    this.createCodeText(charProps);
-    this.createToolTip();
+    [
+      this.characterIcon,
+      this.characterCode,
+      this.toolTip,
+      this.openingTagString,
+      this.closingTagString,
+    ] = createCharacterComponents(charProps, 'char__code');
 
-    this.characterCode = new MyComponent({
-      classNames: ['char__code-text'],
-    }).HTMLElement;
-
-    this.characterIcon.addEventListener('mouseover', (event) => {
+    this.characterIcon.onmouseover = (event) => {
       this.handleHoverEvents(event, this.characterIcon);
-    });
+    };
 
-    this.characterIcon.addEventListener('mouseout', (event) => {
+    this.characterIcon.onmouseout = (event) => {
       this.handleHoverEvents(event, this.characterIcon);
-    });
+    };
 
-    this.characterCode.addEventListener('mouseover', (event) => {
+    this.characterCode.onmouseover = (event) => {
       this.handleHoverEvents(event, this.characterCode);
-    });
+    };
 
-    this.characterCode.addEventListener('mouseout', (event) => {
+    this.characterCode.onmouseout = (event) => {
       this.handleHoverEvents(event, this.characterCode);
-    });
-  }
-
-  createLevelDisplayIcon({ tagName, classNames, attrs }) {
-    let str = `<${tagName} `;
-
-    if (classNames) {
-      str += Character.createClassNamesString(classNames);
-    }
-
-    if (attrs) {
-      str += Character.createAttrsString(attrs);
-    }
-
-    str += `></${tagName}>`;
-
-    const div = new MyComponent().HTMLElement;
-    div.innerHTML = str;
-
-    this.characterIcon = div.firstElementChild;
-  }
-
-  createCodeText({ tagName, classNames, attrs, children }) {
-    let str = `${tagName}`;
-
-    if (classNames) {
-      str += Character.createClassNamesString(classNames);
-    }
-
-    if (attrs) {
-      str += Character.createClassNamesString(classNames);
-    }
-
-    if (children) {
-      this.openingTag = highlight(`<${str}>`);
-      this.closingTag = highlight(`</${tagName}>`);
-    } else {
-      this.openingTag = highlight(`<${str} />`);
-    }
-  }
-
-  createToolTip() {
-    this.toolTip = new MyComponent({
-      classNames: ['char__tooltip'],
-    }).HTMLElement;
-    this.toolTip.insertAdjacentHTML('afterBegin', this.openingTag);
-
-    if (this.closingTag) {
-      this.toolTip.insertAdjacentHTML('beforeEnd', this.closingTag);
-    }
+    };
   }
 
   handleHoverEvents(event, elem) {
@@ -118,16 +68,5 @@ export class Character {
     this.characterCode.classList.remove('char__code--hover');
     this.toolTip.remove();
     this.toolTip.style = '';
-  }
-
-  static createClassNamesString(classNames) {
-    return ` class="${classNames.join(' ')}"`;
-  }
-
-  static createAttrsString(attrs) {
-    return Object.entries(attrs).reduce(
-      (result, [attr, value]) => `${result} ${attr}=${value}`,
-      ''
-    );
   }
 }

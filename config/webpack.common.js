@@ -31,7 +31,7 @@ module.exports = {
       ],
     }),
     new HtmlWebpackPlugin({
-      title: 'CSS Hero 2',
+      title: 'CSS Hero',
       template: `${paths.src}/template.html`,
       filename: 'index.html',
     }),

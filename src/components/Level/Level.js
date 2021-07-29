@@ -59,11 +59,16 @@ export class Level extends MyComponent {
     } else if (typeof layout === 'object' && layout !== null) {
       result = new Character(layout);
 
-      const { characterIcon, characterCode, openingTag, closingTag } = result;
+      const {
+        characterIcon,
+        characterCode,
+        openingTagString,
+        closingTagString,
+      } = result;
 
       iconParent.append(characterIcon);
 
-      characterCode.insertAdjacentHTML('afterBegin', openingTag);
+      characterCode.insertAdjacentHTML('afterBegin', openingTagString);
 
       if (layout.children && layout.children.length) {
         result.children = Level.processLevelCharacters(
@@ -73,8 +78,8 @@ export class Level extends MyComponent {
         );
       }
 
-      if (closingTag) {
-        characterCode.insertAdjacentHTML('beforeEnd', closingTag);
+      if (closingTagString) {
+        characterCode.insertAdjacentHTML('beforeEnd', closingTagString);
       }
 
       codeParent.appendChild(characterCode);
