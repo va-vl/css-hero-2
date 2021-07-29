@@ -1,7 +1,12 @@
 /**
  * An object containing HTML attributes
  * use null for attributes not requiring a value
- * @typedef {Object.<string, (number | boolean | string | null)>} attrsObject
+ * @typedef {Object.<string, (number | boolean | string | null)>} AttrsObject
+ */
+
+/**
+ * Child elements that can be appended to MyComponent's HTMLElement prop
+ * @typedef {(HTMLElement | MyComponent)[]} ChildrenArray
  */
 
 /**
@@ -10,7 +15,8 @@
  * @property {String} tagName component HTML tag
  * @property {String[] | void} classNames array of CSS class names
  * @property {String | void} textContent html element's text content
- * @property {attrsObject} attrs html element's attributes
+ * @property {AttrsObject} attrs html element's attributes
+ * @property {ChildrenArray} children html element's child elements
  */
 
 const ALLOWED_ATTR_VALUE_TYPES = ['string', 'number', 'boolean'];
@@ -30,6 +36,7 @@ export class MyComponent {
     classNames = null,
     textContent = null,
     attrs = null,
+    children = null,
   } = {}) {
     this.HTMLElement = document.createElement(tagName);
 
@@ -43,6 +50,10 @@ export class MyComponent {
 
     if (attrs) {
       this.setAttrs(attrs);
+    }
+
+    if (children) {
+      this.appendChildren(...children);
     }
   }
 
@@ -73,7 +84,7 @@ export class MyComponent {
 
   /**
    * Sets attributes to HTMLElement
-   * @param {attrsObject} attrs a list of key=value pairs
+   * @param {AttrsObject} attrs a list of key=value pairs
    * @returns {void}
    */
   setAttrs(attrs) {
@@ -129,7 +140,7 @@ export class MyComponent {
 
   /**
    * Append HTML elements as children of this HTMLElement
-   * @param  {...(HTMLElement | MyComponent)[]} children
+   * @param  {...ChildrenArray} children
    */
   appendChildren(...children) {
     children.forEach((child) => {
@@ -145,5 +156,9 @@ export class MyComponent {
 
       throw new TypeError('MyComponent appendChildren can append only Node!');
     });
+  }
+
+  clearContent() {
+    this.HTMLElement.innerHTML = '';
   }
 }

@@ -50,12 +50,15 @@ export const applyMiddleware =
  * @param {Function} arg.reducer
  * @param {Function} arg.middleware
  * @param {Function} arg.preloader preload state
- * @returns
+ * @returns {object} store
  */
 export const createStore = ({ reducer, middleware, preloader = undefined }) => {
   let state = preloader && preloader();
   let subscribers = [];
 
+  /**
+   * @param {Action} action
+   */
   const coreDispatch = (action) => {
     validateAction(action);
     state = reducer(state, action);
@@ -77,6 +80,9 @@ export const createStore = ({ reducer, middleware, preloader = undefined }) => {
   };
 
   if (middleware) {
+    /**
+     * @param {Action} action
+     */
     const dispatch = (action) => store.dispatch(action);
 
     store.dispatch = middleware({

@@ -1,0 +1,37 @@
+{
+  "title": "Fight everyone",
+  "description": "<p>Oh no, more orcs are arriving! They must've been prowling the woods, looking for towns to pillage. We must stand our ground!</p><p>Slay all enemies - wolves, boars, and orcs - at once using the <b>universal CSS selector</b>:</p><p><code>*</code></code>",
+  "answer": "*",
+  "layout": [
+    {
+      "tagName": "orc",
+      "classNames": ["target"]
+    },
+    {
+      "tagName": "boar",
+      "classNames": ["target", "big"],
+      "children": []
+    },
+    {
+      "tagName": "orc",
+      "classNames": ["target"]
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["target"],
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["target"],
+      "attrs": {
+        "color": "red"
+      },
+      "children": []
+    },
+    {
+      "tagName": "orc",
+      "classNames": ["target"]
+    }
+  ]
+}

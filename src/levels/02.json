@@ -1,0 +1,22 @@
+{
+  "title": "Hunt the boars",
+  "description": "<p>With the wolf gone, the boars are multiplying like crazy.</p>We could use their meat and hides though.</p><p>Hunt all boars at once with the <b>element CSS selector</b>!</p>",
+  "answer": "boar",
+  "layout": [
+    {
+      "tagName": "boar",
+      "classNames": ["target"],
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "classNames": ["target"],
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "classNames": ["target"],
+      "children": []
+    }
+  ]
+}

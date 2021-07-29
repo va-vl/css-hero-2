@@ -1,0 +1,39 @@
+{
+  "title": "Save the Brown Wolf (3)",
+  "description": "<p>Let's save this Brown Wolf too. He's swarmed by Red Wolves and rabid grey wolves. So we need to act quickly!</p><p>Use the <b>:not() pseudo-class selector</b> to destroy all non-brown wolves with one blow.</p><p><code>element:not(selector)</code></p><p>Hint: pass the color attribute as the argument for <i>:not()</i></p>",
+  "answer": "wolf:not([color=brown])",
+  "layout": [
+    {
+      "tagName": "wolf",
+      "classNames": ["big", "target"],
+      "children": [
+        {
+          "tagName": "orc"
+        }
+      ]
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["target"],
+      "attrs": {
+        "color": "red"
+      },
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "attrs": {
+        "color": "brown"
+      },
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["target", "big"],
+      "attrs": {
+        "color": "red"
+      },
+      "children": []
+    }
+  ]
+}

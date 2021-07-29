@@ -1,0 +1,36 @@
+{
+  "title": "Break the formation (4)",
+  "description": "<p>Another wave, this time the handler is in the back. </p><p>Use the <b>:last-child pseudo-class</b> to target the boar.</p>",
+  "answer": "boar:last-child",
+  "layout": [
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "classNames": ["target"],
+      "children": [
+        {
+          "tagName": "archer"
+        }
+      ]
+    }
+  ]
+}

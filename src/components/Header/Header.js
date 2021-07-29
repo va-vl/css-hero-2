@@ -12,10 +12,6 @@ export class Header extends MyComponent {
       classNames: [...outerClassNames, 'header'],
     });
 
-    const logo = new MyComponent({
-      tagName: 'h1',
-      classNames: ['header__logo'],
-    });
     const logoFancy = new MyComponent({
       tagName: 'span',
       classNames: ['header__logo-fancy'],
@@ -26,8 +22,11 @@ export class Header extends MyComponent {
       classNames: ['header__logo-plain'],
       textContent: 'hero',
     });
-
-    logo.appendChildren(logoFancy, logoPlain);
+    const logo = new MyComponent({
+      tagName: 'h1',
+      classNames: ['header__logo'],
+      children: [logoFancy, logoPlain],
+    });
 
     const menuButton = new KeyButton({
       classNames: ['header__button', 'header__button--menu'],

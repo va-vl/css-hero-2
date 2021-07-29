@@ -1,5 +1,4 @@
-export { Code } from './Code/Code';
-export { Footer } from './Footer/Footer';
 export { Header } from './Header/Header';
-export { LevelDisplay } from './LevelDisplay/LevelDisplay';
+export { Level } from './Level/Level';
 export { Menu } from './Menu/Menu';
+export { Footer } from './Footer/Footer';

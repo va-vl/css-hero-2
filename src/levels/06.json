@@ -1,0 +1,30 @@
+{
+  "title": "Wipe out all wildlife",
+  "description": "<p>What in the world? Boars and wolves are attacking us together!</p><p>I've never seen anything like this before! Almost as if somebody is behind this...</p><p>Alas, no time to talk!</p><p>Slay all boars and wolves at once using the <b>CSS comma combinator</b>:</p><p><code>element1, element2</code></p>",
+  "answer": "boar, wolf",
+  "layout": [
+    {
+      "tagName": "boar",
+      "classNames": ["big", "target"],
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "classNames": ["target"],
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["target"],
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["target"],
+      "attrs": {
+        "color": "red"
+      },
+      "children": []
+    }
+  ]
+}

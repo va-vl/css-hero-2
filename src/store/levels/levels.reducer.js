@@ -1,9 +1,12 @@
-import { levels } from '../levels';
+import { levels } from '../../levels';
 
-const initialState = levels.map((level) => ({
-  ...level,
-  status: 0,
-}));
+const initialState = {
+  currentLevelIndex: 0,
+  levels: levels.map((level) => ({
+    ...level,
+    status: 0,
+  })),
+};
 
 /**
  * @param {object} state

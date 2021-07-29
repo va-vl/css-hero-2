@@ -1,0 +1,37 @@
+{
+  "title": "Defeat the Ruby Wizard",
+  "description": "<p>This is it, the final battle. The Ruby Wizard was behind this all along!</p><p>Ruby Wizards are evil sorcerers hell bent on conquering every land they can reach.</p><p>This one is riding a giant Red Wolf. We must defeat them both using only one selector, otherwise they will get us.</p><p>Use the <b>CSS attribute selector</b> and strike all foes whose color starts with the letter 'r.</p><p><code>[attribute^=value]</code></p>",
+  "answer": "[color^=r]",
+  "layout": [
+    {
+      "tagName": "wolf",
+      "classNames": ["target", "big"],
+      "attrs": {
+        "color": "red"
+      },
+      "children": [
+        {
+          "tagName": "wizard",
+          "classNames": ["target"],
+          "attrs": {
+            "color": "ruby"
+          }
+        }
+      ]
+    },
+    {
+      "tagName": "wolf",
+      "attrs": {
+        "color": "brown"
+      },
+      "children": [
+        {
+          "tagName": "wizard",
+          "attrs": {
+            "color": "blue"
+          }
+        }
+      ]
+    }
+  ]
+}
