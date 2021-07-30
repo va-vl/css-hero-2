@@ -4,12 +4,13 @@ import './Footer.scss';
 
 export class Footer extends MyComponent {
   /**
-   * @param {String[]} outerClassNames classNames from outer component
+   * @param {Object} props
+   * @property {String[]} classNames CSS class names
    */
-  constructor(outerClassNames) {
+  constructor({ classNames }) {
     super({
       tagName: 'footer',
-      classNames: [...outerClassNames, 'footer'],
+      classNames: [...classNames, 'footer'],
     });
 
     const githubImage = new MyComponent({
@@ -21,6 +22,7 @@ export class Footer extends MyComponent {
         width: 100,
       },
     });
+
     const githubLink = new MyComponent({
       tagName: 'a',
       classNames: ['footer__github-link'],

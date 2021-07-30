@@ -8,13 +8,15 @@ export class Menu extends MyComponent {
    * @param {String[]} outerClassNames classNames from outer component
    * @param {Model} model interface for state access
    */
-  constructor(outerClassNames /* , model */) {
+  constructor(outerClassNames /* model */) {
     super({
       classNames: [...outerClassNames, 'menu'],
     });
 
-    const levelDescription = new LevelDescription();
-    const levelList = new LevelList();
+    // const { currentLevelIndex, currentLevel, levels } = model.getLevelData();
+
+    const levelDescription = new LevelDescription(['menu__level-description']);
+    const levelList = new LevelList(['menu__level-list']);
 
     this.appendChildren(levelDescription, levelList);
   }

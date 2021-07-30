@@ -39,13 +39,14 @@ const createCodeStrings = ({ tagName, classNames, attrs, children }) => {
       )
       .trim();
 
-    str += classNamesString && `class="${classNamesString}"`;
+    str += classNamesString && ` class="${classNamesString}"`;
   }
 
   if (attrs) {
-    str += Object.entries(attrs)
-      .reduce((result, [key, value]) => `${result}${key}="${value}" `, '')
-      .trim();
+    str += Object.entries(attrs).reduce(
+      (result, [key, value]) => ` ${result}${key}="${value}"`,
+      ''
+    );
   }
 
   return children

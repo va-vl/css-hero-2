@@ -9,11 +9,12 @@ const MAX_CODE_LINES = 21;
 
 export class Code extends MyComponent {
   /**
-   * @param {String[]} outerClassNames classNames from outer component
+   * @param {Object} props
+   * @property {String[]} classNames classNames from outer component
    */
-  constructor(outerClassNames = []) {
+  constructor({ classNames }) {
     super({
-      classNames: [...outerClassNames, 'code'],
+      classNames: [...classNames, 'code'],
     });
 
     this.css = new CodeContainer({

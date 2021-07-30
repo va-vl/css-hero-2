@@ -2,9 +2,14 @@ import { MyComponent } from '@lib';
 import './LevelList.scss';
 
 export class LevelList extends MyComponent {
-  constructor() {
+  /**
+   * @param {String[]} outerClassNames classNames from outer component
+   * @param {Function} changeLevelCb callback for level change
+   * @param {Function} resetProgressCb callback for progress reset
+   */
+  constructor(outerClassNames /* , changeLevelCb, resetProgressCb */) {
     super({
-      textContent: 'menu level list placeholder',
+      classNames: [...outerClassNames, 'level-list'],
     });
   }
 }

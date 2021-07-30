@@ -6,21 +6,22 @@ import './Level.scss';
 
 export class Level extends MyComponent {
   /**
-   * @param {String[]} outerClassNames classNames from outer component
-   * @param {Model} model interface for state access
+   * @param {Object} props
+   * @property {String[]} classNames classNames from outer component
+   * @property {Object} levelData stored data used for visualization
    */
-  constructor(outerClassNames, model) {
+  constructor({ classNames, levelData }) {
     super({
-      classNames: [...outerClassNames, 'level'],
+      classNames: [...classNames, 'level'],
     });
 
-    const { currentLevel } = model.getCurrentLevelData();
     const { iconLevelFragment, codeLevelFragment } =
-      Level.createLevelRender(currentLevel);
+      Level.createLevelFragments(levelData);
 
-    this.display = new Display(['level__display']);
-    this.code = new Code(['level__code']);
-    this.renderLevel(currentLevel, iconLevelFragment, codeLevelFragment);
+    this.display = new Display({ classNames: ['level__display'] });
+    this.code = new Code({ classNames: ['level__code'] });
+
+    this.renderLevel(levelData, iconLevelFragment, codeLevelFragment);
     this.appendChildren(this.display, this.code);
   }
 
@@ -29,7 +30,7 @@ export class Level extends MyComponent {
     this.code.renderLevel(codeLevelFragment);
   }
 
-  static createLevelRender(level) {
+  static createLevelFragments(level) {
     const iconLevelFragment = new DocumentFragment();
     const codeLevelFragment = new DocumentFragment();
 
@@ -50,15 +51,14 @@ export class Level extends MyComponent {
     https://stackoverflow.com/a/28876564
   */
   static processLevelCharacters(layout, iconParent, codeParent) {
-    let result;
-
     if (Array.isArray(layout)) {
-      result = layout.map((character) =>
-        Level.processLevelCharacters(character, iconParent, codeParent)
+      return layout.map((char) =>
+        Level.processLevelCharacters(char, iconParent, codeParent)
       );
-    } else if (typeof layout === 'object' && layout !== null) {
-      result = new Character(layout);
+    }
 
+    if (typeof layout === 'object' && layout !== null) {
+      const result = new Character(layout);
       const {
         characterIcon,
         characterCode,
@@ -83,10 +83,10 @@ export class Level extends MyComponent {
       }
 
       codeParent.appendChild(characterCode);
-    } else {
-      result = layout;
+
+      return result;
     }
 
-    return result;
+    return layout;
   }
 }

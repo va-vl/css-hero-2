@@ -3,9 +3,10 @@ export class Model {
     this.store = store;
   }
 
-  getCurrentLevelData() {
+  getLevelData() {
     const { currentLevelIndex, levels } = this.store.getState();
     return {
+      levels,
       currentLevelIndex,
       currentLevel: levels[currentLevelIndex],
     };
@@ -27,12 +28,12 @@ export class Model {
   }
 
   setNextLevel() {
-    const { currentLevelIndex } = this.getCurrentLevelData();
+    const { currentLevelIndex } = this.getLevelData();
     this.setLevel(currentLevelIndex + 1);
   }
 
   setPreviousLevel() {
-    const { currentLevelIndex } = this.getCurrentLevelData();
+    const { currentLevelIndex } = this.getLevelData();
     this.setLevel(currentLevelIndex - 1);
   }
 

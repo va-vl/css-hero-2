@@ -3,12 +3,12 @@ import { ProgressBar } from './ProgressBar/ProgressBar';
 import './LevelDescription.scss';
 
 export class LevelDescription extends MyComponent {
-  constructor() {
+  constructor(outerClassNames) {
     super({
-      textContent: 'menu level description placeholder',
+      classNames: [...outerClassNames, 'level-description'],
     });
 
-    const progressBar = new ProgressBar();
+    const progressBar = new ProgressBar(['level-description__progress-bar']);
 
     this.appendChildren(progressBar);
   }
