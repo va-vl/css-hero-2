@@ -6,15 +6,24 @@ export class App extends MyComponent {
   /**
    *  @param {Model} model interface for store
    */
-  constructor(/* model */) {
+  constructor(model) {
     super({ tagName: 'main', classNames: ['app', 'app__grid'] });
 
-    // const { currentLevelIndex, currentLevel, levels } = model.getLevelData();
+    const { currentLevelIndex, currentLevel, levels } = model.getLevelData();
 
-    const header = new Header({ classNames: ['app__header'] });
+    const header = new Header();
     const footer = new Footer({ classNames: ['app__footer'] });
-    const menu = new Menu({ classNames: ['app__menu'] });
-    const level = new Level({ classNames: ['app__footer'] });
+    const menu = new Menu({
+      classNames: ['app__menu'],
+      currentLevelIndex,
+      currentLevel,
+      levels,
+    });
+    const level = new Level({
+      classNames: ['app__footer'],
+      levelData: currentLevel,
+    });
+
     const wrapper = new MyComponent({
       classNames: ['app__wrapper'],
       children: [header, level, footer],

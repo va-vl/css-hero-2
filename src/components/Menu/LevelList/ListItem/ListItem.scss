@@ -1,0 +1,48 @@
+.list-item {
+  display: grid;
+  grid-template-columns: 10% 10% auto;
+  column-gap: 3%;
+  align-items: center;
+  justify-items: center;
+
+  &--current {
+    background-color: var(--color-background-darker);
+
+    .list-item__link {
+      cursor: default;
+    }
+  }
+}
+
+.list-item__icon {
+  font-size: 1.5em;
+  margin-right: 5px;
+  color: var(--color-grey);
+  opacity: 0.5;
+  justify-self: start;
+
+  &--assisted {
+    color: var(--color-silver);
+    opacity: 1;
+  }
+
+  &--solved {
+    color: var(--color-gold);
+    opacity: 1;
+  }
+}
+
+.list-item__link {
+  text-decoration: none;
+  color: var(--color-font-light);
+  justify-self: start;
+
+  &:hover,
+  &:focus {
+    font-weight: 800;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}

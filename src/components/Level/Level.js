@@ -10,7 +10,7 @@ export class Level extends MyComponent {
    * @property {String[]} classNames classNames from outer component
    * @property {Object} levelData stored data used for visualization
    */
-  constructor({ classNames, levelData }) {
+  constructor({ classNames = [], levelData } = {}) {
     super({
       classNames: [...classNames, 'level'],
     });

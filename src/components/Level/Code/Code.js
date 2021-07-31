@@ -37,6 +37,6 @@ export class Code extends MyComponent {
   }
 
   renderLevel() {
-    console.log(String(this));
+    return this && null;
   }
 }

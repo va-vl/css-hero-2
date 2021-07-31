@@ -7,7 +7,7 @@ export class Footer extends MyComponent {
    * @param {Object} props
    * @property {String[]} classNames CSS class names
    */
-  constructor({ classNames }) {
+  constructor({ classNames = [] } = {}) {
     super({
       tagName: 'footer',
       classNames: [...classNames, 'footer'],

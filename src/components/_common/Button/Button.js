@@ -22,6 +22,6 @@ export class Button extends MyComponent {
   }
 
   handleClick() {
-    this.blur();
+    this.HTMLElement.blur();
   }
 }

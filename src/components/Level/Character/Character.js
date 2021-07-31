@@ -17,7 +17,10 @@ export class Character {
       this.toolTip,
       this.openingTagString,
       this.closingTagString,
-    ] = createCharacterComponents(charProps, 'char__code');
+    ] = createCharacterComponents(charProps, {
+      codeContainerClassNames: ['char__code'],
+      toolTipClassNames: ['char__tooltip'],
+    });
 
     this.characterIcon.onmouseover = (event) => {
       this.handleHoverEvents(event, this.characterIcon);

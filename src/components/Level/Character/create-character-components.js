@@ -20,8 +20,8 @@ const createIcon = ({ tagName, classNames, attrs }) =>
  * @param {String} className
  * @returns  {HTMLElement}
  */
-const createCodeContainer = (className) =>
-  new MyComponent({ classNames: [className] }).HTMLElement;
+const createCodeContainer = (classNames) =>
+  new MyComponent({ classNames: [...classNames] }).HTMLElement;
 
 /**
  * @param {CharProps} charProps
@@ -59,9 +59,13 @@ const createCodeStrings = ({ tagName, classNames, attrs, children }) => {
  * @param {String} closingTagString
  * @returns {HTMLElement} tooltip
  */
-const createToolTip = (openingTagString, closingTagString) => {
+const createToolTip = (
+  openingTagString,
+  closingTagString,
+  toolTipClassNames
+) => {
   const toolTip = new MyComponent({
-    classNames: ['char__tooltip'],
+    classNames: [...toolTipClassNames],
   }).HTMLElement;
 
   toolTip.insertAdjacentHTML('afterBegin', openingTagString);
@@ -74,16 +78,24 @@ const createToolTip = (openingTagString, closingTagString) => {
 };
 
 /**
- *
- * @param {CharProps} props
- * @param {String} codeClassName
+ * @param {CharProps} charProps
+ * @param {Object} props creation props
+ * @param {String[]} props.codeContainerClassNames
+ * @param {String[]} props.toolTipClassNames
  * @returns {[HTMLElement, HTMLElement, HTMLElement, string, (string|undefined)]} [icon, codeContainer, toolTip, openingTagString, closingTagString]
  */
-export const createCharacterComponents = (props, codeClassName) => {
-  const icon = createIcon(props);
-  const codeContainer = createCodeContainer(codeClassName);
-  const [openingString, closingString] = createCodeStrings(props);
-  const tooltip = createToolTip(openingString, closingString);
+export const createCharacterComponents = (
+  charProps,
+  { codeContainerClassNames, toolTipClassNames }
+) => {
+  const icon = createIcon(charProps);
+  const codeContainer = createCodeContainer(codeContainerClassNames);
+  const [openingString, closingString] = createCodeStrings(charProps);
+  const tooltip = createToolTip(
+    openingString,
+    closingString,
+    toolTipClassNames
+  );
 
   return [icon, codeContainer, tooltip, openingString, closingString];
 };

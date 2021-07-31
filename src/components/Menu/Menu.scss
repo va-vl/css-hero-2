@@ -1,0 +1,39 @@
+.menu {
+  color: var(--color-white);
+
+  &__wrapper {
+    position: relative;
+    padding: 20px;
+    height: 100vh;
+
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background-color: var(--color-background-dark);
+  }
+
+  &__control-panel {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    z-index: 10;
+  }
+
+  &__level-list {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: 2;
+
+    transition: left 200ms ease;
+
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  &--list {
+    .menu__level-list {
+      left: 0%;
+    }
+  }
+}

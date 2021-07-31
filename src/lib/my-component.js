@@ -83,6 +83,18 @@ export class MyComponent {
   }
 
   /**
+   * Toggles classNames on HTMLElement
+   * @param {String[]} classNames space-delimited string of CSS class names
+   * @returns {void}
+   */
+  toggleClasses(classNames) {
+    classNames.forEach((className) => {
+      checkClassNameType(className);
+      this.HTMLElement.classList.toggle(className);
+    });
+  }
+
+  /**
    * Sets attributes to HTMLElement
    * @param {AttrsObject} attrs a list of key=value pairs
    * @returns {void}
@@ -113,7 +125,7 @@ export class MyComponent {
    */
   removeAttrs(attrsList) {
     attrsList.forEach((attrName) => {
-      if (typeof attrName !== 'string') {
+      if (typeof attrName === 'string') {
         this.HTMLElement.removeAttribute(attrName);
         return;
       }
@@ -136,6 +148,16 @@ export class MyComponent {
    */
   addTextContent(textContent) {
     this.HTMLElement.textContent += textContent;
+  }
+
+  /**
+   * Uses insertAdjacentHTML on this.HTMLElement
+   * @param {position} string
+   * @param {String} HTMLString
+   */
+  setInnerHTML(position, HTMLString) {
+    this.HTMLElement.innerHTML = '';
+    this.HTMLElement.insertAdjacentHTML(position, HTMLString);
   }
 
   /**

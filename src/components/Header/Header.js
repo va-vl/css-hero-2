@@ -7,7 +7,7 @@ export class Header extends MyComponent {
    * @param {Object} props
    * @property {String[]} props.classNames classNames from outer component
    */
-  constructor({ classNames }) {
+  constructor({ classNames = [] } = {}) {
     super({
       tagName: 'header',
       classNames: [...classNames, 'header'],
