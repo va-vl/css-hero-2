@@ -12,24 +12,45 @@ export class App extends MyComponent {
     const { currentLevelIndex, currentLevel, levels } = model.getLevelData();
 
     const header = new Header();
+
+    this.level = new Level({
+      classNames: ['app__footer'],
+      currentLevelIndex,
+      currentLevel,
+    });
+
     const footer = new Footer({ classNames: ['app__footer'] });
-    const menu = new Menu({
+
+    const wrapper = new MyComponent({
+      classNames: ['app__wrapper'],
+      children: [header, this.level, footer],
+    });
+
+    this.menu = new Menu({
       classNames: ['app__menu'],
       currentLevelIndex,
       currentLevel,
       levels,
-    });
-    const level = new Level({
-      classNames: ['app__footer'],
-      levelData: currentLevel,
-    });
-
-    const wrapper = new MyComponent({
-      classNames: ['app__wrapper'],
-      children: [header, level, footer],
+      changeLevelCb: (levelIndex) => {
+        model.setLevel(levelIndex);
+      },
     });
 
-    this.appendChildren(wrapper, menu);
+    model.subscribe(() => {
+      this.render(model);
+    });
+
+    this.appendChildren(wrapper, this.menu);
+  }
+
+  /**
+   * @param {Model} model
+   */
+  render(model) {
+    const { currentLevelIndex, currentLevel, levels } = model.getLevelData();
+
+    this.level.render(currentLevelIndex, currentLevel);
+    this.menu.render(currentLevelIndex, currentLevel, levels);
   }
 
   /**

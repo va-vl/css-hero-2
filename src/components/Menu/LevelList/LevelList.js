@@ -10,8 +10,15 @@ export class LevelList extends MyComponent {
    * @property {Number} currentLevelIndex
    * @property {Object[]} levels
    * @property {Function} onTransitionEndCb
+   * @property {Function} onLevelLinkClickCb
    */
-  constructor({ classNames, currentLevelIndex, levels, onTransitionEndCb }) {
+  constructor({
+    classNames,
+    currentLevelIndex,
+    levels,
+    onTransitionEndCb,
+    onLevelLinkClickCb,
+  }) {
     super({
       tagName: 'nav',
       classNames: [...classNames, 'level-list'],
@@ -33,6 +40,7 @@ export class LevelList extends MyComponent {
             level,
             index,
             currentLevelIndex,
+            onClickCb: onLevelLinkClickCb,
           })
       ),
     });

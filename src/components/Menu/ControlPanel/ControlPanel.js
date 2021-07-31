@@ -9,33 +9,37 @@ export class ControlPanel extends MyComponent {
    * @property {String[]} classNames
    * @property {Number} currentLevelIndex
    * @property {Number} levelsAmount
+   * @property {Function} onPrevButtonClickCb
+   * @property {Function} onNextButtonClickCb
    * @property {Function} onBurgerButtonClickCb
    */
   constructor({
     classNames = [],
     currentLevelIndex,
     levelsAmount,
+    onPrevButtonClickCb,
+    onNextButtonClickCb,
     onBurgerButtonClickCb,
   } = []) {
     super({
       classNames: [...classNames, 'control-panel'],
     });
 
-    const prevButton = new NavButton({
+    this.prevButton = new NavButton({
       classNames: ['control-panel__button'],
       direction: 'prev',
       currentLevelIndex,
       levelsAmount,
+      onClickCb: onPrevButtonClickCb,
     });
 
-    const nextButton = new NavButton({
+    this.nextButton = new NavButton({
       classNames: ['control-panel__button'],
       direction: 'next',
       currentLevelIndex,
       levelsAmount,
+      onClickCb: onNextButtonClickCb,
     });
-
-    this.navButtons = [prevButton, nextButton];
 
     this.burgerButton = new BurgerButton({
       classNames: ['control-panel__button'],
@@ -43,6 +47,6 @@ export class ControlPanel extends MyComponent {
       onClickCb: onBurgerButtonClickCb,
     });
 
-    this.appendChildren(prevButton, nextButton, this.burgerButton);
+    this.appendChildren(this.prevButton, this.nextButton, this.burgerButton);
   }
 }

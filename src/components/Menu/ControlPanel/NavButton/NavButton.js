@@ -14,8 +14,15 @@ export class NavButton extends Button {
    * @property {String} direction navigation direction
    * @property {Number} currentLevelIndex
    * @property {Number} levelsAmount
+   * @property {Function} onClickCb
    */
-  constructor({ classNames, direction, currentLevelIndex, levelsAmount }) {
+  constructor({
+    classNames,
+    direction,
+    currentLevelIndex,
+    levelsAmount,
+    onClickCb,
+  }) {
     super({
       classNames: [...classNames],
       textContent: String.fromCodePoint(
@@ -24,6 +31,8 @@ export class NavButton extends Button {
     });
 
     this.direction = direction;
+
+    this.HTMLElement.addEventListener('click', onClickCb);
 
     this.handleDisabledAttr(currentLevelIndex, levelsAmount);
   }

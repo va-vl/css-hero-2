@@ -1,3 +1,5 @@
+import { levelActionCreators } from '../store';
+
 export class Model {
   constructor(store) {
     this.store = store;
@@ -20,27 +22,19 @@ export class Model {
    * @param {Number} index
    */
   setLevel(index) {
-    if (index < 0 || index >= this.store.levels.length) {
+    const { length: levelsAmount } = this.store.getState().levels;
+
+    if (index < 0 || index >= levelsAmount) {
       throw new Error('Invalid level index');
     }
 
-    this.dispatchAction({ type: 'LEVEL_SET', payload: index });
-  }
-
-  setNextLevel() {
-    const { currentLevelIndex } = this.getLevelData();
-    this.setLevel(currentLevelIndex + 1);
-  }
-
-  setPreviousLevel() {
-    const { currentLevelIndex } = this.getLevelData();
-    this.setLevel(currentLevelIndex - 1);
+    this.dispatchAction(levelActionCreators.levelSetAC(index));
   }
 
   /**
    * @param {Function} cb will be called after state change
    */
-  subscribeToStore(cb) {
+  subscribe(cb) {
     this.store.subscribe(cb);
   }
 }

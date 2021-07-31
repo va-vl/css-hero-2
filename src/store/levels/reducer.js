@@ -1,3 +1,4 @@
+import { LEVEL_SET } from './actions';
 import { levels } from '../../levels';
 
 const initialState = {
@@ -10,10 +11,16 @@ const initialState = {
 
 /**
  * @param {object} state
- * @param {object} action
+ * @param {object} payload
  */
-export const levelReducer = (state = initialState, { type /* , action */ }) => {
+export const levelReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case LEVEL_SET: {
+      return {
+        ...state,
+        currentLevelIndex: payload,
+      };
+    }
     default: {
       return {
         ...state,

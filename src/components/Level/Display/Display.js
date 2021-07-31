@@ -16,7 +16,9 @@ export class Display extends MyComponent {
       classNames: ['display__title'],
     });
 
-    this.chars = new MyComponent({ classNames: ['display__chars'] });
+    this.chars = new MyComponent({
+      classNames: ['display__chars'],
+    });
 
     const wrapper = new MyComponent({
       classNames: ['display__wrapper'],
@@ -30,9 +32,14 @@ export class Display extends MyComponent {
     this.appendChildren(this.title, wrapper);
   }
 
-  renderLevel(levelData, iconFragment) {
-    this.title.setTextContent(levelData.title);
+  /**
+   * @param {Object} props
+   * @property {String} title level title
+   * @property {Node} iconLevelFragment
+   */
+  render({ title, iconLevelFragment }) {
+    this.title.setTextContent = title;
     this.chars.clearContent();
-    this.chars.HTMLElement.append(iconFragment);
+    this.chars.appendChildren(iconLevelFragment);
   }
 }

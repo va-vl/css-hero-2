@@ -12,7 +12,7 @@ export class Code extends MyComponent {
    * @param {Object} props
    * @property {String[]} classNames classNames from outer component
    */
-  constructor({ classNames }) {
+  constructor({ classNames = [] }) {
     super({
       classNames: [...classNames, 'code'],
     });
@@ -36,7 +36,7 @@ export class Code extends MyComponent {
     this.appendChildren(this.css, this.html);
   }
 
-  renderLevel() {
+  render() {
     return this && null;
   }
 }

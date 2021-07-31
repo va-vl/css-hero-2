@@ -1,5 +1,5 @@
 import { MyRedux, MyThunk } from '@lib';
-import { levelReducer } from './levels/levels.reducer';
+import { levelReducer } from './levels/reducer';
 import { getPersistentState, setPersistentState } from './store.service';
 
 const store = MyRedux.createStore({

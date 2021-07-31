@@ -11,12 +11,14 @@ export class Menu extends MyComponent {
    * @property {Number} currentLevelIndex
    * @property {Object} currentLevel current level object
    * @property {Object[]} levels array of all levels
+   * @property {Function} changeLevelCb callback that changes a level
    */
   constructor({
     classNames = [],
     currentLevelIndex,
     currentLevel,
     levels,
+    changeLevelCb,
   } = {}) {
     super({
       classNames: [...classNames, 'menu'],
@@ -39,6 +41,12 @@ export class Menu extends MyComponent {
         this.isMoving = true;
         return true;
       },
+      onNextButtonClickCb: () => {
+        changeLevelCb(currentLevelIndex + 1);
+      },
+      onPrevButtonClickCb: () => {
+        changeLevelCb(currentLevelIndex - 1);
+      },
     });
 
     const levelDescription = new LevelDescription({
@@ -54,6 +62,9 @@ export class Menu extends MyComponent {
       levels,
       onTransitionEndCb: () => {
         this.isMoving = false;
+      },
+      onLevelLinkClickCb: (level) => {
+        changeLevelCb(level);
       },
     });
 
