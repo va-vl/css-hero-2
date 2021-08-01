@@ -1,3 +1,12 @@
+@keyframes blink {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: var(--color-highlight);
+  }
+}
+
 .CodeMirror {
   line-height: 14px;
   margin-right: 10px;
@@ -23,4 +32,8 @@
     margin: 0 !important;
     border: none !important;
   }
+}
+
+.CodeMirror-empty {
+  animation: blink 300ms ease infinite alternate;
 }

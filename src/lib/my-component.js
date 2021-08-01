@@ -19,7 +19,7 @@
  * @property {ChildrenArray} children html element's child elements
  */
 
-const ALLOWED_ATTR_VALUE_TYPES = ['string', 'number', 'boolean'];
+const ALLOWED_ATTR_VALUE_TYPES = ['string', 'number'];
 
 const checkClassNameType = (className) => {
   if (typeof className !== 'string') {
@@ -101,8 +101,8 @@ export class MyComponent {
    */
   setAttrs(attrs) {
     Object.entries(attrs).forEach(([attr, value]) => {
-      if (value === null) {
-        this.HTMLElement.setAttribute(attr);
+      if (value === true) {
+        this.HTMLElement.setAttribute(attr, '');
         return;
       }
 

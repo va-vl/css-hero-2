@@ -3,6 +3,17 @@ import { KeyButton } from '@components/common';
 import { MyComponent } from '@lib';
 import './Input.scss';
 
+const WIDTH_VALUE = '100px';
+
+const refreshCodeMirror = (cm) => {
+  const cmDisplaySizer = cm.display.sizer;
+
+  cmDisplaySizer.style.minWidth = WIDTH_VALUE;
+  cmDisplaySizer.style.maxWidth = WIDTH_VALUE;
+  cmDisplaySizer.style.width = WIDTH_VALUE;
+  cm.refresh();
+};
+
 export class Input extends MyComponent {
   constructor({ classNames = [] } = {}) {
     super({
@@ -30,6 +41,11 @@ export class Input extends MyComponent {
       scrollbarStyle: null,
     });
 
-    this.codeMirror.display.wrapper.classList.add('input__cm-wrapper--empty');
+    this.codeMirror.on('keydown', refreshCodeMirror);
+
+    setTimeout(() => {
+      refreshCodeMirror(this.codeMirror);
+      this.codeMirror.focus();
+    });
   }
 }

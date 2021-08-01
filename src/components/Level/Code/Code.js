@@ -5,11 +5,11 @@ import { MyComponent } from '@lib';
 import { CodeContainer } from '@components/common';
 import { highlight } from '../../../utils';
 import { Input } from './Input/Input';
+import './CodeMirror.scss';
 import './Code.scss';
 
 const MAX_CODE_LINES = 21;
-const CSS_DESCRIPTION = `
-{
+const CSS_DESCRIPTION = `{
   /* Some CSS rules */
 }
 
@@ -22,7 +22,8 @@ const processDescription = (text) => {
   const fragment = new DocumentFragment();
 
   text.split('\n').forEach((line) => {
-    fragment.append(new MyComponent({ textContent: line }).HTMLElement);
+    fragment.append(line);
+    fragment.append(new MyComponent({ tagName: 'br' }).HTMLElement);
   });
 
   return fragment;
@@ -51,6 +52,10 @@ export class Code extends MyComponent {
     this.input = new Input({ classNames: ['code__input'] });
 
     this.cssContainer.setMainContent(this.input, CSSDescriptionFragment);
+
+    this.cssContainer.HTMLElement.onclick = () => {
+      this.input.codeMirror.focus();
+    };
 
     this.htmlContainer = new CodeContainer({
       classNames: ['code__container', 'code__container--html'],
