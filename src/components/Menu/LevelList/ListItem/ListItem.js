@@ -8,21 +8,12 @@ export class ListItem extends MyComponent {
    * @param {Object} props
    * @property {String[]} classNames array of css class names
    * @property {Object} level level data
-   * @property {Number} index level index
-   * @property {Number} currentLevelIndex index of the level currently being played
-   * @property {Function} onClickCb
    */
-  constructor({ classNames, level, index, currentLevelIndex, onClickCb }) {
+  constructor({ classNames, level }) {
     super({
       tagName: 'li',
       classNames: [...classNames, 'list-item'],
     });
-
-    this.index = index;
-
-    if (this.checkIsCurrent(currentLevelIndex)) {
-      this.addClasses(['list-item--current']);
-    }
 
     this.icon = new MyComponent({
       tagName: 'span',
@@ -37,17 +28,50 @@ export class ListItem extends MyComponent {
       attrs: { href: '#' },
     });
 
+    this.appendChildren(this.icon, link);
+  }
+
+  /**
+   * @param {Object} props
+   * @property {Object} level level data
+   * @property {Number} index level index
+   * @property {Number} currentLevelIndex index of the level currently being played
+   * @property {Function} onClickCb
+   */
+  render({ index, currentLevelIndex, level, onClickCb }) {
+    if (index === currentLevelIndex) {
+      this.addClasses(['list-item--current']);
+    } else {
+      this.removeClasses(['list-item--current']);
+    }
+
     this.HTMLElement.onclick = (event) => {
-      if (currentLevelIndex !== index) {
+      if (index !== currentLevelIndex) {
         event.preventDefault();
         onClickCb(index);
       }
     };
 
-    this.appendChildren(this.icon, link);
-  }
+    const { status } = level;
 
-  checkIsCurrent(currentLevelIndex) {
-    return this.index === currentLevelIndex;
+    switch (status) {
+      case 2: {
+        this.icon.addClasses(['list-item__icon--solved']);
+        this.icon.removeClasses(['list-item__icon--assisted']);
+        break;
+      }
+      case 1: {
+        this.icon.addClasses(['list-item__icon--assisted']);
+        this.icon.removeClasses(['list-item__icon--solved']);
+        break;
+      }
+      case 0:
+      default: {
+        this.icon.removeClasses([
+          'list-item__icon--solved',
+          'list-item__icon--assisted',
+        ]);
+      }
+    }
   }
 }

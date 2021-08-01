@@ -19,10 +19,10 @@ export class BurgerButton extends Button {
 
     this.appendChildren(burgerDash);
 
-    this.HTMLElement.addEventListener('click', () => {
+    this.HTMLElement.onclick = () => {
       if (onClickCb()) {
         this.toggleClasses(['button__burger--open']);
       }
-    });
+    };
   }
 }

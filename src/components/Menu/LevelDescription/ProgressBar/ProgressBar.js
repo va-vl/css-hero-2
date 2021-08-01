@@ -5,10 +5,8 @@ export class ProgressBar extends MyComponent {
   /**
    * @param {Object} props
    * @property {String[]} classNames array of css class names
-   * @property {Number} currentLevelIndex
-   * @property {Number} levelsAmount
    */
-  constructor({ classNames, currentLevelIndex, levelsAmount }) {
+  constructor({ classNames }) {
     super({
       classNames: [...classNames, 'progress-bar'],
     });
@@ -17,12 +15,15 @@ export class ProgressBar extends MyComponent {
       classNames: ['progress-bar__bar'],
     });
 
-    this.setBarWidth(currentLevelIndex, levelsAmount);
-
     this.appendChildren(this.bar);
   }
 
-  setBarWidth(currentLevelIndex, levelsAmount) {
+  /**
+   * @param {Object} props
+   * @property {Number} currentLevelIndex
+   * @property {Number} levelsAmount
+   */
+  render({ currentLevelIndex, levelsAmount }) {
     this.bar.HTMLElement.style.width = `${
       ((currentLevelIndex + 1) / levelsAmount) * 100
     }%`;

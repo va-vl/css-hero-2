@@ -12,17 +12,8 @@ export class NavButton extends Button {
    * @param {Object} props
    * @property {String[]} classNames
    * @property {String} direction navigation direction
-   * @property {Number} currentLevelIndex
-   * @property {Number} levelsAmount
-   * @property {Function} onClickCb
    */
-  constructor({
-    classNames,
-    direction,
-    currentLevelIndex,
-    levelsAmount,
-    onClickCb,
-  }) {
+  constructor({ classNames, direction }) {
     super({
       classNames: [...classNames],
       textContent: String.fromCodePoint(
@@ -31,13 +22,15 @@ export class NavButton extends Button {
     });
 
     this.direction = direction;
-
-    this.HTMLElement.addEventListener('click', onClickCb);
-
-    this.handleDisabledAttr(currentLevelIndex, levelsAmount);
   }
 
-  handleDisabledAttr(currentLevelIndex, levelsAmount) {
+  /**
+   * @param {Object} props
+   * @property {Number} currentLevelIndex
+   * @property {Number} levelsAmount
+   * @property {Function} onClickCb
+   */
+  render({ levelsAmount, currentLevelIndex, onClickCb }) {
     const prevAtStart = currentLevelIndex === 0 && this.direction === 'prev';
     const nextAtEnd =
       currentLevelIndex + 1 === levelsAmount && this.direction === 'next';
@@ -47,5 +40,7 @@ export class NavButton extends Button {
     } else {
       this.removeAttrs(['disabled']);
     }
+
+    this.HTMLElement.onclick = onClickCb;
   }
 }

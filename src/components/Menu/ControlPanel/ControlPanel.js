@@ -1,26 +1,15 @@
 import { MyComponent } from '@lib';
 import { BurgerButton } from './BurgerButton/BurgerButton';
-import './ControlPanel.scss';
 import { NavButton } from './NavButton/NavButton';
+import './ControlPanel.scss';
 
 export class ControlPanel extends MyComponent {
   /**
    * @param {Object} props
    * @property {String[]} classNames
-   * @property {Number} currentLevelIndex
-   * @property {Number} levelsAmount
-   * @property {Function} onPrevButtonClickCb
-   * @property {Function} onNextButtonClickCb
    * @property {Function} onBurgerButtonClickCb
    */
-  constructor({
-    classNames = [],
-    currentLevelIndex,
-    levelsAmount,
-    onPrevButtonClickCb,
-    onNextButtonClickCb,
-    onBurgerButtonClickCb,
-  } = []) {
+  constructor({ classNames = [], levelsAmount, onBurgerButtonClickCb } = {}) {
     super({
       classNames: [...classNames, 'control-panel'],
     });
@@ -28,25 +17,44 @@ export class ControlPanel extends MyComponent {
     this.prevButton = new NavButton({
       classNames: ['control-panel__button'],
       direction: 'prev',
-      currentLevelIndex,
       levelsAmount,
-      onClickCb: onPrevButtonClickCb,
     });
 
     this.nextButton = new NavButton({
       classNames: ['control-panel__button'],
       direction: 'next',
-      currentLevelIndex,
       levelsAmount,
-      onClickCb: onNextButtonClickCb,
     });
 
-    this.burgerButton = new BurgerButton({
+    const burgerButton = new BurgerButton({
       classNames: ['control-panel__button'],
-      direction: 'next',
       onClickCb: onBurgerButtonClickCb,
     });
 
-    this.appendChildren(this.prevButton, this.nextButton, this.burgerButton);
+    this.appendChildren(this.prevButton, this.nextButton, burgerButton);
+  }
+
+  /**
+   * @param {Object} props
+   * @property {Number} levelsAmount
+   * @property {Number} currentLevelIndex
+   * @property {Function} onNavButtonClickCb
+   */
+  render({ levelsAmount, currentLevelIndex, onNavButtonClickCb }) {
+    this.prevButton.render({
+      levelsAmount,
+      currentLevelIndex,
+      onClickCb: () => {
+        onNavButtonClickCb(currentLevelIndex - 1);
+      },
+    });
+
+    this.nextButton.render({
+      levelsAmount,
+      currentLevelIndex,
+      onClickCb: () => {
+        onNavButtonClickCb(currentLevelIndex + 1);
+      },
+    });
   }
 }

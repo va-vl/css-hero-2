@@ -9,7 +9,7 @@ export class Level extends MyComponent {
    * @param {Object} props
    * @property {String[]} classNames classNames from outer component
    */
-  constructor({ classNames = [], currentLevel, currentLevelIndex } = {}) {
+  constructor({ classNames = [] } = {}) {
     super({
       classNames: [...classNames, 'level'],
     });
@@ -18,7 +18,6 @@ export class Level extends MyComponent {
     this.display = new Display({ classNames: ['level__display'] });
     this.code = new Code({ classNames: ['level__code'] });
 
-    this.render({ currentLevelIndex, currentLevel });
     this.appendChildren(this.display, this.code);
   }
 
@@ -26,14 +25,9 @@ export class Level extends MyComponent {
    * Render if level was changed
    * @param {Object} prop
    * @property {Object} currentLevel
-   * @property {Number} currentLevelIndex
    * @returns {void}
    */
-  render({ currentLevelIndex, currentLevel }) {
-    if (this.currentLevelIndex === currentLevelIndex) {
-      return;
-    }
-
+  render({ currentLevel }) {
     const [iconLevelFragment, codeLevelFragment] =
       createLevelVisualization(currentLevel);
 
@@ -45,7 +39,5 @@ export class Level extends MyComponent {
     this.code.render({
       codeLevelFragment,
     });
-
-    this.currentLevelIndex = currentLevelIndex;
   }
 }

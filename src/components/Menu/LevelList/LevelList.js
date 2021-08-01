@@ -7,18 +7,10 @@ export class LevelList extends MyComponent {
   /**
    * @param {Object} props
    * @property {String[]} classNames classNames from outer component
-   * @property {Number} currentLevelIndex
    * @property {Object[]} levels
    * @property {Function} onTransitionEndCb
-   * @property {Function} onLevelLinkClickCb
    */
-  constructor({
-    classNames,
-    currentLevelIndex,
-    levels,
-    onTransitionEndCb,
-    onLevelLinkClickCb,
-  }) {
+  constructor({ classNames, levels, onTransitionEndCb }) {
     super({
       tagName: 'nav',
       classNames: [...classNames, 'level-list'],
@@ -30,20 +22,20 @@ export class LevelList extends MyComponent {
       textContent: 'Level list',
     });
 
-    this.list = new MyComponent({
+    const list = new MyComponent({
       tagName: 'ol',
       classNames: ['level-list__list'],
-      children: levels.map(
-        (level, index) =>
-          new ListItem({
-            classNames: ['level-list__list-item'],
-            level,
-            index,
-            currentLevelIndex,
-            onClickCb: onLevelLinkClickCb,
-          })
-      ),
     });
+
+    this.listItems = levels.map(
+      (level) =>
+        new ListItem({
+          classNames: ['level-list__list-item'],
+          level,
+        })
+    );
+
+    list.appendChildren(...this.listItems);
 
     const resetButton = new KeyButton({
       classNames: ['level-list__reset-button'],
@@ -52,6 +44,23 @@ export class LevelList extends MyComponent {
 
     this.HTMLElement.ontransitionend = onTransitionEndCb;
 
-    this.appendChildren(heading, this.list, resetButton);
+    this.appendChildren(heading, list, resetButton);
+  }
+
+  /**
+   * @param {Object} props
+   * @property {Number} currentLevelIndex
+   * @property {Object[]} levels
+   * @property {Function} onLevelLinkClickCb
+   */
+  render({ levels, currentLevelIndex, onLevelLinkClickCb }) {
+    this.listItems.forEach((listItem, index) => {
+      listItem.render({
+        index,
+        currentLevelIndex,
+        level: levels[index],
+        onClickCb: onLevelLinkClickCb,
+      });
+    });
   }
 }

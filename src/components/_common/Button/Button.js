@@ -16,12 +16,8 @@ export class Button extends MyComponent {
       attrs,
     });
 
-    this.HTMLElement.onclick = () => {
-      this.handleClick();
-    };
-  }
-
-  handleClick() {
-    this.HTMLElement.blur();
+    this.HTMLElement.addEventListener('click', () => {
+      this.HTMLElement.blur();
+    });
   }
 }

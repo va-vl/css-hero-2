@@ -8,71 +8,76 @@ export class Menu extends MyComponent {
   /**
    * @param {Object} props
    * @property {String[]} classNames classNames from outer component
-   * @property {Number} currentLevelIndex
-   * @property {Object} currentLevel current level object
-   * @property {Object[]} levels array of all levels
-   * @property {Function} changeLevelCb callback that changes a level
    */
-  constructor({
-    classNames = [],
-    currentLevelIndex,
-    currentLevel,
-    levels,
-    changeLevelCb,
-  } = {}) {
+  constructor({ classNames = [], levels } = {}) {
     super({
       classNames: [...classNames, 'menu'],
     });
 
     this.isMoving = false;
+    this.levelsAmount = levels.length;
 
-    const { length: levelsAmount } = levels;
+    const onBurgerButtonClickCb = () => {
+      if (this.isMoving) {
+        return false;
+      }
 
-    const controlPanel = new ControlPanel({
+      this.toggleClasses(['menu--list']);
+      this.isMoving = true;
+      return true;
+    };
+
+    const onLevelListTransitionEndCb = () => {
+      this.isMoving = false;
+    };
+
+    this.controlPanel = new ControlPanel({
       classNames: ['menu__control-panel'],
-      currentLevelIndex,
-      levelsAmount,
-      onBurgerButtonClickCb: () => {
-        if (this.isMoving) {
-          return false;
-        }
-
-        this.toggleClasses(['menu--list']);
-        this.isMoving = true;
-        return true;
-      },
-      onNextButtonClickCb: () => {
-        changeLevelCb(currentLevelIndex + 1);
-      },
-      onPrevButtonClickCb: () => {
-        changeLevelCb(currentLevelIndex - 1);
-      },
+      onBurgerButtonClickCb,
     });
 
-    const levelDescription = new LevelDescription({
+    this.levelDescription = new LevelDescription({
       classNames: ['menu__level-description'],
+    });
+
+    this.levelList = new LevelList({
+      classNames: ['menu__level-list'],
+      onTransitionEndCb: onLevelListTransitionEndCb,
+      levels,
+    });
+
+    this.appendChildren(
+      new MyComponent({
+        classNames: ['menu__wrapper'],
+        children: [this.controlPanel, this.levelDescription, this.levelList],
+      })
+    );
+  }
+
+  /**
+   * @param {Object} props
+   * @property {Number} currentLevelIndex
+   * @property {Object} currentLevel current level object
+   * @property {Object[]} levels array of all levels
+   * @property {Function} setLevelCb callback that changes a level
+   */
+  render({ currentLevelIndex, currentLevel, levels, setLevelCb }) {
+    this.controlPanel.render({
+      currentLevelIndex,
+      onNavButtonClickCb: setLevelCb,
+      levelsAmount: this.levelsAmount,
+    });
+
+    this.levelDescription.render({
       currentLevel,
       currentLevelIndex,
-      levelsAmount,
+      levelsAmount: this.levelsAmount,
     });
 
-    const levelList = new LevelList({
-      classNames: ['menu__level-list'],
-      currentLevelIndex,
+    this.levelList.render({
       levels,
-      onTransitionEndCb: () => {
-        this.isMoving = false;
-      },
-      onLevelLinkClickCb: (level) => {
-        changeLevelCb(level);
-      },
+      currentLevelIndex,
+      onLevelLinkClickCb: setLevelCb,
     });
-
-    const menuWrapper = new MyComponent({
-      classNames: ['menu__wrapper'],
-      children: [controlPanel, levelDescription, levelList],
-    });
-
-    this.appendChildren(menuWrapper);
   }
 }

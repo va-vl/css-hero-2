@@ -9,38 +9,29 @@ export class App extends MyComponent {
   constructor(model) {
     super({ tagName: 'main', classNames: ['app', 'app__grid'] });
 
-    const { currentLevelIndex, currentLevel, levels } = model.getLevelData();
+    const { levels } = model.getLevelData();
 
     const header = new Header();
-
-    this.level = new Level({
-      classNames: ['app__footer'],
-      currentLevelIndex,
-      currentLevel,
-    });
-
     const footer = new Footer({ classNames: ['app__footer'] });
-
-    const wrapper = new MyComponent({
-      classNames: ['app__wrapper'],
-      children: [header, this.level, footer],
-    });
-
+    this.level = new Level({ classNames: ['app__footer'] });
     this.menu = new Menu({
       classNames: ['app__menu'],
-      currentLevelIndex,
-      currentLevel,
       levels,
-      changeLevelCb: (levelIndex) => {
-        model.setLevel(levelIndex);
-      },
     });
+
+    this.render(model);
 
     model.subscribe(() => {
       this.render(model);
     });
 
-    this.appendChildren(wrapper, this.menu);
+    this.appendChildren(
+      new MyComponent({
+        classNames: ['app__wrapper'],
+        children: [header, this.level, footer],
+      }),
+      this.menu
+    );
   }
 
   /**
@@ -49,8 +40,21 @@ export class App extends MyComponent {
   render(model) {
     const { currentLevelIndex, currentLevel, levels } = model.getLevelData();
 
-    this.level.render(currentLevelIndex, currentLevel);
-    this.menu.render(currentLevelIndex, currentLevel, levels);
+    const setLevelCb = (levelIndex) => {
+      model.setLevel(levelIndex);
+    };
+
+    this.level.render({
+      currentLevelIndex,
+      currentLevel,
+    });
+
+    this.menu.render({
+      currentLevelIndex,
+      currentLevel,
+      levels,
+      setLevelCb,
+    });
   }
 
   /**
