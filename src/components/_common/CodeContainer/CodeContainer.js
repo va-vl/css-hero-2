@@ -47,11 +47,30 @@ export class CodeContainer extends MyComponent {
     this.appendChildren(header, mainWrapper);
   }
 
-  /**
-   * @param {(HTMLElement|MyComponent)[]} children array of main content elements
-   */
-  setMainContent(children) {
+  clearMainContent() {
     this.main.clearContent();
+  }
+
+  /**
+   * @param {...(HTMLElement|MyComponent)[]} children array of main content elements
+   */
+  setMainContent(...children) {
+    this.clearMainContent();
+    this.appendMainContent(...children);
+  }
+
+  /**
+   * @param {...(HTMLElement|MyComponent)[]} children array of main content elements
+   */
+  appendMainContent(...children) {
     this.main.appendChildren(...children);
+  }
+
+  /**
+   * @param {position} string
+   * @param {String} HTMLString
+   */
+  appendMainInnerHTML(position, HTMLString) {
+    this.main.appendInnerHTML(position, HTMLString);
   }
 }

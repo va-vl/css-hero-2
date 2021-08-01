@@ -38,7 +38,7 @@ export class Display extends MyComponent {
    * @property {Node} iconLevelFragment
    */
   render({ title, iconLevelFragment }) {
-    this.title.setTextContent = title;
+    this.title.setTextContent(title);
     this.chars.clearContent();
     this.chars.appendChildren(iconLevelFragment);
   }

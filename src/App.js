@@ -13,7 +13,8 @@ export class App extends MyComponent {
 
     const header = new Header();
     const footer = new Footer({ classNames: ['app__footer'] });
-    this.level = new Level({ classNames: ['app__footer'] });
+
+    this.level = new Level({ classNames: ['app__level'] });
     this.menu = new Menu({
       classNames: ['app__menu'],
       levels,

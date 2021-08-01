@@ -10,7 +10,7 @@
       "tagName": "wolf",
       "children": [
         {
-          "tagName": "orc"
+          "tagNames": "orc"
         }
       ]
     },
@@ -19,7 +19,7 @@
       "children": [
         {
           "tagName": "archer",
-          "className": ["target"]
+          "classNames": ["target"]
         }
       ]
     },
@@ -28,7 +28,7 @@
       "children": [
         {
           "tagName": "archer",
-          "className": ["target"]
+          "classNames": ["target"]
         }
       ]
     }

@@ -181,6 +181,15 @@ export class MyComponent {
    */
   setInnerHTML(position, HTMLString) {
     this.clearContent();
+    this.appendInnerHTML(position, HTMLString);
+  }
+
+  /**
+   * Uses insertAdjacentHTML on this.HTMLElement
+   * @param {position} string
+   * @param {String} HTMLString
+   */
+  appendInnerHTML(position, HTMLString) {
     this.HTMLElement.insertAdjacentHTML(position, HTMLString);
   }
 }
