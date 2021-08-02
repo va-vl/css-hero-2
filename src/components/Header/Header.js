@@ -5,12 +5,12 @@ import './Header.scss';
 export class Header extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} props.classNames classNames from outer component
+   * @property {Function} onMenuButtonClickCb
    */
-  constructor({ classNames = [] } = {}) {
+  constructor({ onMenuButtonClickCb = () => {} } = {}) {
     super({
       tagName: 'header',
-      classNames: [...classNames, 'header'],
+      classNames: ['header'],
     });
 
     const logoFancy = new MyComponent({
@@ -34,6 +34,10 @@ export class Header extends MyComponent {
     const menuButton = new KeyButton({
       classNames: ['header__button', 'header__button--menu'],
       textContent: 'Show menu',
+    });
+
+    menuButton.HTMLElement.addEventListener('click', () => {
+      onMenuButtonClickCb();
     });
 
     const helpButton = new KeyButton({

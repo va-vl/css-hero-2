@@ -1,3 +1,4 @@
+import { Button } from '@components/common';
 import { MyComponent } from '@lib';
 import { ControlPanel } from './ControlPanel/ControlPanel';
 import { LevelDescription } from './LevelDescription/LevelDescription';
@@ -46,11 +47,20 @@ export class Menu extends MyComponent {
       levels,
     });
 
+    const closeButton = new Button({
+      classNames: ['menu__close-button'],
+    });
+
+    closeButton.HTMLElement.addEventListener('click', () => {
+      this.removeClasses(['menu--active']);
+    });
+
     this.appendChildren(
       new MyComponent({
         classNames: ['menu__wrapper'],
         children: [this.controlPanel, this.levelDescription, this.levelList],
-      })
+      }),
+      closeButton
     );
   }
 

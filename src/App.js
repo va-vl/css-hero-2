@@ -9,15 +9,17 @@ export class App extends MyComponent {
   constructor(model) {
     super({ tagName: 'main', classNames: ['app', 'app__grid'] });
 
-    const { levels } = model.getLevelData();
-
-    const header = new Header();
+    const header = new Header({
+      onMenuButtonClickCb: () => {
+        this.menu.addClasses(['menu--active']);
+      },
+    });
     const footer = new Footer({ classNames: ['app__footer'] });
 
     this.level = new Level({ classNames: ['app__level'] });
     this.menu = new Menu({
       classNames: ['app__menu'],
-      levels,
+      levels: model.getLevelData().levels,
     });
 
     this.render(model);
