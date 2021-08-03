@@ -5,10 +5,10 @@ import './ListItem.scss';
 export class ListItem extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames array of css class names
-   * @property {Object} level level data
-   * @property {Number} index level index
-   * @property {Function} onClickCb
+   * @param {String[]} props.classNames array of css class names
+   * @param {Object} props.level level data
+   * @param {Number} props.index level index
+   * @param {Function} props.onClickCb
    */
   constructor({ classNames, level, index, onClickCb }) {
     super({
@@ -38,9 +38,9 @@ export class ListItem extends MyComponent {
 
   /**
    * @param {Object} props
-   * @property {Number} status level status
-   * @property {Number} index level index
-   * @property {Number} currentLevelIndex index of the level currently being played
+   * @param {Number} props.status level status
+   * @param {Number} props.index level index
+   * @param {Number} props.currentLevelIndex index of the level currently being played
    */
   render({ index, currentLevelIndex, status }) {
     if (index === currentLevelIndex) {

@@ -21,11 +21,12 @@ export class VictoryScreen extends MyComponent {
 
     const closeButton = new CloseButton({
       classNames: ['victory-screen__close-button'],
+      onClickCbs: [
+        () => {
+          this.HTMLElement.remove();
+        },
+      ],
     });
-
-    closeButton.onclick = () => {
-      this.HTMLElement.remove();
-    };
 
     this.appendChildren(
       closeButton,

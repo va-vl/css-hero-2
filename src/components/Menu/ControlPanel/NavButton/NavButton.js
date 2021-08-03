@@ -1,35 +1,30 @@
 import { Button } from '@components/common';
-
-const DIRECTION_ICON_CODE_POINTS = {
-  prev: 9756,
-  next: 9758,
-};
-
-const DEFAULT_ICON_CODE_POINT = 9760;
+import { NAV_BUTTON_DIRECTIONS } from '@constants';
 
 export class NavButton extends Button {
   /**
    * @param {Object} props
-   * @property {String[]} classNames
-   * @property {String} direction navigation direction
-   * @property {Function} onClickCb
+   * @param {String[]} props.classNames
+   * @param {String} props.direction navigation direction
+   * @param {Function} props.onClickCb
    */
   constructor({ classNames, direction, onClickCb }) {
     super({
       classNames: [...classNames],
       textContent: String.fromCodePoint(
-        DIRECTION_ICON_CODE_POINTS[direction] || DEFAULT_ICON_CODE_POINT
+        NAV_BUTTON_DIRECTIONS[direction]?.iconCodePoint ||
+          NAV_BUTTON_DIRECTIONS.default.iconCodePoint
       ),
+      onClickCbs: [onClickCb],
     });
 
     this.direction = direction;
-    this.HTMLElement.onclick = onClickCb;
   }
 
   /**
    * @param {Object} props
-   * @property {Number} currentLevelIndex
-   * @property {Number} levelsAmount
+   * @param {Number} props.currentLevelIndex
+   * @param {Number} props.levelsAmount
    */
   render({ levelsAmount, currentLevelIndex }) {
     const prevAtStart = currentLevelIndex === 0 && this.direction === 'prev';

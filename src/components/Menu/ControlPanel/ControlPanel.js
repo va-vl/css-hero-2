@@ -1,4 +1,5 @@
 import { MyComponent } from '@lib';
+import { NAV_BUTTON_DIRECTIONS } from '@constants';
 import { BurgerButton } from './BurgerButton/BurgerButton';
 import { NavButton } from './NavButton/NavButton';
 import './ControlPanel.scss';
@@ -6,10 +7,10 @@ import './ControlPanel.scss';
 export class ControlPanel extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames
-   * @property {Function} onBurgerButtonClickCb
-   * @property {Function} onPrevButtonClickCb
-   * @property {Function} onNextButtonClickCb
+   * @param {String[]} props.classNames
+   * @param {Function} props.onBurgerButtonClickCb
+   * @param {Function} props.onPrevButtonClickCb
+   * @param {Function} props.onNextButtonClickCb
    */
   constructor({
     classNames = [],
@@ -24,7 +25,7 @@ export class ControlPanel extends MyComponent {
 
     this.prevButton = new NavButton({
       classNames: ['control-panel__button'],
-      direction: 'prev',
+      direction: NAV_BUTTON_DIRECTIONS.prev.direction,
       levelsAmount,
       onClickCb: () => {
         onPrevButtonClickCb();
@@ -33,7 +34,7 @@ export class ControlPanel extends MyComponent {
 
     this.nextButton = new NavButton({
       classNames: ['control-panel__button'],
-      direction: 'next',
+      direction: NAV_BUTTON_DIRECTIONS.next.direction,
       levelsAmount,
       onClickCb: () => {
         onNextButtonClickCb();

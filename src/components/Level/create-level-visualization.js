@@ -1,9 +1,13 @@
 import { Character } from './Character/Character';
 
-/*
-  processLevelCharacters is based on the deep cloning algorithm from
-  https://stackoverflow.com/a/28876564
-*/
+/**
+ * processLevelCharacters is based on the deep cloning algorithm from
+ * https://stackoverflow.com/a/28876564
+ * @param {Object[]} layout array of characters as objects parsed from level JSON
+ * @param {Node} iconVisualizationParent
+ * @param {Node} codeVisualizationParent
+ * @returns {Character|Character[]}
+ */
 const visualizeLevelLayout = (
   layout,
   iconVisualizationParent,

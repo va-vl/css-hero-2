@@ -4,10 +4,13 @@ import './CodeContainer.scss';
 export class CodeContainer extends MyComponent {
   /**
    * @param {Object} props code container props
-   * @property {String[]} classNames a list of css class names
-   * @property
+   * @param {String[]} props.classNames a list of css class names
+   * @param {String} props.type "css" or "html"
+   * @param {String} props.title container title
+   * @param {String} props.title decorative class name
+   * @param {Number} props.maxCodeLines decorative code lines
    */
-  constructor({ classNames = [], title, fileName, type, maxCodeLines } = {}) {
+  constructor({ classNames = [], type, title, fileName, maxCodeLines } = {}) {
     super({
       classNames: [...classNames, 'code-container', `code-container--${type}`],
     });

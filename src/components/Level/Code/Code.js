@@ -6,35 +6,15 @@ import { MAX_CODE_LINES } from '@constants';
 import { CodeContainer } from '@components/common';
 import { highlight } from '../../../utils';
 import { Input } from './Input/Input';
+import { getCssDescriptionFragment } from './get-css-description-fragment';
 import './CodeMirror.scss';
 import './Code.scss';
-
-const CSS_DESCRIPTION = `{
-  /* Some CSS rules */
-}
-
-/*
-  Type in a number to select a level:
-  "5" switches to level 5
-*/`;
-
-const processDescription = (text) => {
-  const fragment = new DocumentFragment();
-
-  text.split('\n').forEach((line) => {
-    fragment.append(line);
-    fragment.append(new MyComponent({ tagName: 'br' }).HTMLElement);
-  });
-
-  return fragment;
-};
 
 export class Code extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames classNames from outer component
-   * @property {Function} checkAnswerCb check answer
-   * @property {Function} checkAnswerCb
+   * @param {String[]} props.classNames classNames from outer component
+   * @param {Function} props.checkAnswerCb check answer
    */
   constructor({ classNames = [], checkAnswerCb }) {
     super({
@@ -49,7 +29,7 @@ export class Code extends MyComponent {
       maxCodeLines: MAX_CODE_LINES,
     });
 
-    const CSSDescriptionFragment = processDescription(CSS_DESCRIPTION);
+    const CSSDescriptionFragment = getCssDescriptionFragment();
 
     this.input = new Input({ classNames: ['code__input'], checkAnswerCb });
 
@@ -77,7 +57,7 @@ export class Code extends MyComponent {
 
   /**
    * @param {Object} props
-   * @param {DocumentFragment} codeLevelFragment
+   * @param {DocumentFragment} props.codeLevelFragment
    */
   render({ codeLevelFragment }) {
     this.htmlContainer.clearMainContent();

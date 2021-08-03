@@ -1,24 +1,14 @@
 import CodeMirror from 'codemirror';
 import { KeyButton } from '@components/common';
 import { MyComponent } from '@lib';
+import { refreshCodeMirror } from './refresh-code-mirror';
 import './Input.scss';
-
-const WIDTH_VALUE = '100px';
-
-const refreshCodeMirror = (cm) => {
-  const cmDisplaySizer = cm.display.sizer;
-
-  cmDisplaySizer.style.minWidth = WIDTH_VALUE;
-  cmDisplaySizer.style.maxWidth = WIDTH_VALUE;
-  cmDisplaySizer.style.width = WIDTH_VALUE;
-  cm.refresh();
-};
 
 export class Input extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames
-   * @property {Function} checkAnswerCb
+   * @param {String[]} props.classNames
+   * @param {Function} props.checkAnswerCb
    */
   constructor({ classNames = [], checkAnswerCb } = {}) {
     super({
@@ -36,11 +26,12 @@ export class Input extends MyComponent {
     this.enterButton = new KeyButton({
       classNames: ['input__enter-button'],
       textContent: 'Enter',
+      onClickCbs: [
+        () => {
+          checkAnswerCb(this.codeMirror.getValue());
+        },
+      ],
     });
-
-    this.enterButton.HTMLElement.onclick = () => {
-      checkAnswerCb(this.codeMirror.getValue());
-    };
 
     this.appendChildren(textArea, this.enterButton);
 

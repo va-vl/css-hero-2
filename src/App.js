@@ -8,10 +8,8 @@ import {
   ANIMATION_AUTOCOMPLETE_TIMEOUT,
 } from '@constants';
 import { Header, Level, Footer, Menu, VictoryScreen } from './components';
+import { isValidIntegerString, isIntegerString } from './utils';
 import './App.scss';
-
-const isNumber = (selector) => /^\d+/.test(selector);
-const isValidNumber = (num, levels) => num > 0 && num <= levels.length;
 
 export class App extends MyComponent {
   /**
@@ -65,8 +63,8 @@ export class App extends MyComponent {
         return;
       }
 
-      if (isNumber(selector)) {
-        if (isValidNumber(+selector, levels)) {
+      if (isIntegerString(selector)) {
+        if (isValidIntegerString(selector, 0, levels.length)) {
           setLevelCb(+selector - 1);
         } else {
           showWrongAnimation();
@@ -203,8 +201,6 @@ export class App extends MyComponent {
       VictoryScreen.show(document.body);
     }
 
-    model.saveSnapshot();
-
     const { currentLevelIndex, currentLevel, levels } = model.getData();
 
     this.level.render({ currentLevel });
@@ -214,6 +210,8 @@ export class App extends MyComponent {
       currentLevel,
       levels,
     });
+
+    model.saveSnapshot();
   }
 
   /**

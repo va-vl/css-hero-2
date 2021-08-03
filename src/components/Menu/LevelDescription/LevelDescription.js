@@ -5,7 +5,7 @@ import './LevelDescription.scss';
 export class LevelDescription extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames array of css class names
+   * @param {String[]} props.classNames array of css class names
    */
   constructor({ classNames }) {
     super({
@@ -30,9 +30,9 @@ export class LevelDescription extends MyComponent {
 
   /**
    * @param {*} props
-   * @property {Object} currentLevel
-   * @property {Number} currentLevelIndex
-   * @property {Number} levelsAmount
+   * @param {Object} props.currentLevel
+   * @param {Number} props.currentLevelIndex
+   * @param {Number} props.levelsAmount
    */
   render({ currentLevel, currentLevelIndex, levelsAmount }) {
     this.heading.setTextContent(

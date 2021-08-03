@@ -7,8 +7,8 @@ import './Level.scss';
 export class Level extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames classNames from outer component
-   * @property {Function} checkAnswerCb check answer
+   * @param {String[]} props.classNames classNames from outer component
+   * @param {Function} props.checkAnswerCb check answer
    */
   constructor({ classNames = [], checkAnswerCb } = {}) {
     super({
@@ -23,10 +23,8 @@ export class Level extends MyComponent {
   }
 
   /**
-   * Render if level was changed
    * @param {Object} prop
-   * @property {Object} currentLevel
-   * @returns {void}
+   * @param {Object} props.currentLevel
    */
   render({ currentLevel }) {
     const [iconLevelFragment, codeLevelFragment] =

@@ -4,7 +4,7 @@ import './Display.scss';
 export class Display extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames classNames from outer component
+   * @param {String[]} props.classNames classNames from outer component
    */
   constructor({ classNames }) {
     super({
@@ -34,8 +34,8 @@ export class Display extends MyComponent {
 
   /**
    * @param {Object} props
-   * @property {String} title level title
-   * @property {Node} iconLevelFragment
+   * @param {String} props.title level title
+   * @param {DocumentFragment} props.iconLevelFragment
    */
   render({ title, iconLevelFragment }) {
     const junk = document.body.querySelectorAll('.char__tooltip');

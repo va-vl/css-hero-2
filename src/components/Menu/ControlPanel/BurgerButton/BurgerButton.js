@@ -5,24 +5,25 @@ import './BurgerButton.scss';
 export class BurgerButton extends Button {
   /**
    * @param {Object} props
-   * @property {String[]} classNames
-   * @property {Function} onClickCb
+   * @param {String[]} props.classNames
+   * @param {Function} props.onClickCb
    */
-  constructor({ classNames, onClickCb }) {
+  constructor({ classNames = [], onClickCb } = {}) {
     super({
       classNames: [...classNames, 'button__burger'],
+      onClickCbs: [
+        () => {
+          if (onClickCb()) {
+            this.toggleClasses(['button__burger--open']);
+          }
+        },
+      ],
     });
 
-    const burgerDash = new MyComponent({
-      classNames: ['button__burger-dash'],
-    });
-
-    this.appendChildren(burgerDash);
-
-    this.HTMLElement.onclick = () => {
-      if (onClickCb()) {
-        this.toggleClasses(['button__burger--open']);
-      }
-    };
+    this.appendChildren(
+      new MyComponent({
+        classNames: ['button__burger-dash'],
+      })
+    );
   }
 }

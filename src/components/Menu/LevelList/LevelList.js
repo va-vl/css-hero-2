@@ -6,11 +6,11 @@ import './LevelList.scss';
 export class LevelList extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames classNames from outer component
-   * @property {Object[]} levels
-   * @property {Function} onTransitionEndCb
-   * @property {Function} onLevelLinkClickCb
-   * @property {Function} onResetButtonClickCb
+   * @param {String[]} props.classNames classNames from outer component
+   * @param {Object[]} props.levels
+   * @param {Function} props.onTransitionEndCb
+   * @param {Function} props.onLevelLinkClickCb
+   * @param {Function} props.onResetButtonClickCb
    */
   constructor({
     classNames,
@@ -50,11 +50,12 @@ export class LevelList extends MyComponent {
     const resetButton = new KeyButton({
       classNames: ['level-list__reset-button'],
       textContent: 'Reset all progress',
+      onClickCbs: [
+        () => {
+          onResetButtonClickCb();
+        },
+      ],
     });
-
-    resetButton.HTMLElement.onclick = () => {
-      onResetButtonClickCb();
-    };
 
     this.HTMLElement.ontransitionend = onTransitionEndCb;
 
@@ -63,8 +64,8 @@ export class LevelList extends MyComponent {
 
   /**
    * @param {Object} props
-   * @property {Number} currentLevelIndex
-   * @property {Object[]} levels
+   * @param {Number} props.currentLevelIndex
+   * @param {Object[]} props.levels
    */
   render({ levels, currentLevelIndex }) {
     this.listItems.forEach((listItem, index) => {

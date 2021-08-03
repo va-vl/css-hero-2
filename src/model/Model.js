@@ -15,12 +15,12 @@ export class Model {
     };
   }
 
-  isAnimationOn() {
-    return this.store.getState().isAnimated;
-  }
-
   saveSnapshot() {
     this.snapshot = JSON.stringify(this.store.getState());
+  }
+
+  isAnimationOn() {
+    return this.store.getState().isAnimated;
   }
 
   isGameCompleted() {

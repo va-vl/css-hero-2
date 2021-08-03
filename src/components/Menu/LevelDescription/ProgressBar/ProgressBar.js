@@ -4,7 +4,7 @@ import './ProgressBar.scss';
 export class ProgressBar extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames array of css class names
+   * @param {String[]} props.classNames array of css class names
    */
   constructor({ classNames }) {
     super({
@@ -20,8 +20,8 @@ export class ProgressBar extends MyComponent {
 
   /**
    * @param {Object} props
-   * @property {Number} currentLevelIndex
-   * @property {Number} levelsAmount
+   * @param {Number} props.currentLevelIndex
+   * @param {Number} props.levelsAmount
    */
   render({ currentLevelIndex, levelsAmount }) {
     this.bar.HTMLElement.style.width = `${

@@ -8,12 +8,12 @@ import './Menu.scss';
 export class Menu extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames classNames from outer component
-   * @property {String} menuActiveClassName
-   * @property {Function} setLevelCb callback that changes a level
-   * @property {Function} setPrevLevelCb callback that changes a level
-   * @property {Function} setNextLevelCb callback that changes a level
-   * @property {Function} resetProgressCb callback that changes a level
+   * @param {String[]} props.classNames classNames from outer component
+   * @param {String} props.menuActiveClassName
+   * @param {Function} props.setLevelCb callback that changes a level
+   * @param {Function} props.setPrevLevelCb callback that changes a level
+   * @param {Function} props.setNextLevelCb callback that changes a level
+   * @param {Function} props.resetProgressCb callback that changes a level
    */
   constructor({
     classNames = [],
@@ -66,10 +66,11 @@ export class Menu extends MyComponent {
 
     const closeButton = new CloseButton({
       classNames: ['menu__close-button'],
-    });
-
-    closeButton.HTMLElement.addEventListener('click', () => {
-      this.removeClasses([menuActiveClassName]);
+      onClickCbs: [
+        () => {
+          this.removeClasses([menuActiveClassName]);
+        },
+      ],
     });
 
     this.appendChildren(
@@ -83,9 +84,9 @@ export class Menu extends MyComponent {
 
   /**
    * @param {Object} props
-   * @property {Number} currentLevelIndex
-   * @property {Object} currentLevel current level object
-   * @property {Object[]} levels array of all levels
+   * @param {Number} props.currentLevelIndex
+   * @param {Object} props.currentLevel current level object
+   * @param {Object[]} props.levels array of all levels
    */
   render({ currentLevelIndex, currentLevel, levels }) {
     this.controlPanel.render({

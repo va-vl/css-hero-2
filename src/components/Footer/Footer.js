@@ -5,7 +5,7 @@ import './Footer.scss';
 export class Footer extends MyComponent {
   /**
    * @param {Object} props
-   * @property {String[]} classNames CSS class names
+   * @param {String[]} props.classNames CSS class names
    */
   constructor({ classNames = [] } = {}) {
     super({
