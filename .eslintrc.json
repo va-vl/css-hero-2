@@ -21,7 +21,8 @@
       "alias": {
         "map": [
           ["@lib", "./src/lib"],
-          ["@components/common", "./src/components/_common"]
+          ["@components/common", "./src/components/_common"],
+          ["@constants", "./src/constants"]
         ]
       }
     }

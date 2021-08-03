@@ -101,6 +101,7 @@ module.exports = {
       '@lib': `${paths.src}/lib`,
       '@images': `${paths.src}/assets/images`,
       '@components/common': `${paths.src}/components/_common`,
+      '@constants': `${paths.src}/constants`,
     },
   },
 };

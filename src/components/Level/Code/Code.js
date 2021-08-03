@@ -2,13 +2,13 @@ import 'codemirror/mode/css/css';
 import 'codemirror/addon/display/placeholder';
 //
 import { MyComponent } from '@lib';
+import { MAX_CODE_LINES } from '@constants';
 import { CodeContainer } from '@components/common';
 import { highlight } from '../../../utils';
 import { Input } from './Input/Input';
 import './CodeMirror.scss';
 import './Code.scss';
 
-const MAX_CODE_LINES = 21;
 const CSS_DESCRIPTION = `{
   /* Some CSS rules */
 }

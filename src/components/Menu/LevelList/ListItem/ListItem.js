@@ -1,13 +1,6 @@
 import { MyComponent } from '@lib';
+import { LEVEL_STATUSES, BLACK_STAR_CODE_POINT } from '@constants';
 import './ListItem.scss';
-
-const BLACK_STAR_CODE_POINT = 9733;
-
-const LEVEL_STATUSES = {
-  NOT_SOLVED: 0,
-  ASSISTED: 1,
-  SOLVED: 2,
-};
 
 export class ListItem extends MyComponent {
   /**

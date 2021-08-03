@@ -1,16 +1,13 @@
 import { MyComponent } from '@lib';
+import {
+  MENU_ACTIVE_CLASS_NAME,
+  CODE_WRONG_CLASS_NAME,
+  LEVEL_STATUSES,
+  ANIMATION_WRONG_TIMEOUT,
+  ANIMATION_SOLVED_TIMEOUT,
+} from '@constants';
 import { Header, Level, Footer, Menu, VictoryScreen } from './components';
 import './App.scss';
-
-const MENU_ACTIVE_CLASS_NAME = 'menu--active';
-const CODE_WRONG_CLASS_NAME = 'code--wrong';
-const LEVEL_STATUSES = {
-  NOT_SOLVED: 0,
-  ASSISTED: 1,
-  SOLVED: 2,
-};
-const ANIMATION_WRONG_TIMEOUT = 300;
-const ANIMATION_SOLVED_TIMEOUT = 300;
 
 const isNumber = (selector) => /^\d+/.test(selector);
 const isValidNumber = (num, levels) => num > 0 && num <= levels.length;
