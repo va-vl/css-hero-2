@@ -2,7 +2,8 @@
  * @param {String} selector
  * @returns {Boolean}
  */
-export const isIntegerString = (string) => /^\d+/.test(string);
+export const isIntegerString = (string) =>
+  String(parseInt(string, 10)) === string;
 
 /**
  * @param {String} string
@@ -11,6 +12,6 @@ export const isIntegerString = (string) => /^\d+/.test(string);
  * @returns {Boolean}
  */
 export const isValidIntegerString = (string, min, max) => {
-  const integer = parseInt(string, 10);
+  const integer = Number(string);
   return integer >= min && integer < max;
 };
