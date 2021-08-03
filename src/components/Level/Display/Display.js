@@ -38,6 +38,9 @@ export class Display extends MyComponent {
    * @property {Node} iconLevelFragment
    */
   render({ title, iconLevelFragment }) {
+    const junk = document.body.querySelectorAll('.char__tooltip');
+    [...junk].forEach((item) => item.remove());
+
     this.title.setTextContent(title);
     this.chars.clearContent();
     this.chars.appendChildren(iconLevelFragment);

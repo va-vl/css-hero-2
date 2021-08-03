@@ -33,8 +33,10 @@ export class Code extends MyComponent {
   /**
    * @param {Object} props
    * @property {String[]} classNames classNames from outer component
+   * @property {Function} checkAnswerCb check answer
+   * @property {Function} checkAnswerCb
    */
-  constructor({ classNames = [] }) {
+  constructor({ classNames = [], checkAnswerCb }) {
     super({
       classNames: [...classNames, 'code'],
     });
@@ -49,7 +51,7 @@ export class Code extends MyComponent {
 
     const CSSDescriptionFragment = processDescription(CSS_DESCRIPTION);
 
-    this.input = new Input({ classNames: ['code__input'] });
+    this.input = new Input({ classNames: ['code__input'], checkAnswerCb });
 
     this.cssContainer.setMainContent(this.input, CSSDescriptionFragment);
 
@@ -81,9 +83,11 @@ export class Code extends MyComponent {
     this.htmlContainer.clearMainContent();
     this.htmlContainer.appendMainInnerHTML(
       'afterBegin',
-      highlight('<div class="field"')
+      highlight('<div class="field">')
     );
     this.htmlContainer.appendMainContent(codeLevelFragment);
     this.htmlContainer.appendMainInnerHTML('beforeEnd', highlight('</div>'));
+
+    this.input.render();
   }
 }

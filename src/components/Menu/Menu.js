@@ -1,5 +1,5 @@
-import { Button } from '@components/common';
 import { MyComponent } from '@lib';
+import { CloseButton } from '@components/common';
 import { ControlPanel } from './ControlPanel/ControlPanel';
 import { LevelDescription } from './LevelDescription/LevelDescription';
 import { LevelList } from './LevelList/LevelList';
@@ -9,8 +9,19 @@ export class Menu extends MyComponent {
   /**
    * @param {Object} props
    * @property {String[]} classNames classNames from outer component
+   * @property {String} menuActiveClassName
+   * @property {Function} setLevelCb callback that changes a level
+   * @property {Function} setPrevLevelCb callback that changes a level
+   * @property {Function} setNextLevelCb callback that changes a level
    */
-  constructor({ classNames = [], levels } = {}) {
+  constructor({
+    classNames = [],
+    levels,
+    menuActiveClassName,
+    setLevelCb,
+    setPrevLevelCb,
+    setNextLevelCb,
+  } = {}) {
     super({
       classNames: [...classNames, 'menu'],
     });
@@ -34,6 +45,8 @@ export class Menu extends MyComponent {
 
     this.controlPanel = new ControlPanel({
       classNames: ['menu__control-panel'],
+      onPrevButtonClickCb: setPrevLevelCb,
+      onNextButtonClickCb: setNextLevelCb,
       onBurgerButtonClickCb,
     });
 
@@ -43,16 +56,17 @@ export class Menu extends MyComponent {
 
     this.levelList = new LevelList({
       classNames: ['menu__level-list'],
-      onTransitionEndCb: onLevelListTransitionEndCb,
       levels,
+      onLevelLinkClickCb: setLevelCb,
+      onTransitionEndCb: onLevelListTransitionEndCb,
     });
 
-    const closeButton = new Button({
+    const closeButton = new CloseButton({
       classNames: ['menu__close-button'],
     });
 
     closeButton.HTMLElement.addEventListener('click', () => {
-      this.removeClasses(['menu--active']);
+      this.removeClasses([menuActiveClassName]);
     });
 
     this.appendChildren(
@@ -69,12 +83,10 @@ export class Menu extends MyComponent {
    * @property {Number} currentLevelIndex
    * @property {Object} currentLevel current level object
    * @property {Object[]} levels array of all levels
-   * @property {Function} setLevelCb callback that changes a level
    */
-  render({ currentLevelIndex, currentLevel, levels, setLevelCb }) {
+  render({ currentLevelIndex, currentLevel, levels }) {
     this.controlPanel.render({
       currentLevelIndex,
-      onNavButtonClickCb: setLevelCb,
       levelsAmount: this.levelsAmount,
     });
 
@@ -87,7 +99,6 @@ export class Menu extends MyComponent {
     this.levelList.render({
       levels,
       currentLevelIndex,
-      onLevelLinkClickCb: setLevelCb,
     });
   }
 }

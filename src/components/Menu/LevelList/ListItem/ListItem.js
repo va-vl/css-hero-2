@@ -3,13 +3,21 @@ import './ListItem.scss';
 
 const BLACK_STAR_CODE_POINT = 9733;
 
+const LEVEL_STATUSES = {
+  NOT_SOLVED: 0,
+  ASSISTED: 1,
+  SOLVED: 2,
+};
+
 export class ListItem extends MyComponent {
   /**
    * @param {Object} props
    * @property {String[]} classNames array of css class names
    * @property {Object} level level data
+   * @property {Number} index level index
+   * @property {Function} onClickCb
    */
-  constructor({ classNames, level }) {
+  constructor({ classNames, level, index, onClickCb }) {
     super({
       tagName: 'li',
       classNames: [...classNames, 'list-item'],
@@ -21,51 +29,47 @@ export class ListItem extends MyComponent {
       textContent: String.fromCodePoint(BLACK_STAR_CODE_POINT),
     });
 
-    const link = new MyComponent({
+    this.link = new MyComponent({
       tagName: 'a',
       classNames: ['list-item__link'],
       textContent: level.title,
       attrs: { href: '#' },
     });
 
-    this.appendChildren(this.icon, link);
+    this.link.HTMLElement.onclick = () => {
+      onClickCb(index);
+    };
+
+    this.appendChildren(this.icon, this.link);
   }
 
   /**
    * @param {Object} props
-   * @property {Object} level level data
+   * @property {Number} status level status
    * @property {Number} index level index
    * @property {Number} currentLevelIndex index of the level currently being played
-   * @property {Function} onClickCb
    */
-  render({ index, currentLevelIndex, level, onClickCb }) {
+  render({ index, currentLevelIndex, status }) {
     if (index === currentLevelIndex) {
       this.addClasses(['list-item--current']);
+      this.link.addClasses(['list-item__link--disabled']);
     } else {
       this.removeClasses(['list-item--current']);
+      this.link.removeClasses(['list-item__link--disabled']);
     }
 
-    this.HTMLElement.onclick = (event) => {
-      if (index !== currentLevelIndex) {
-        event.preventDefault();
-        onClickCb(index);
-      }
-    };
-
-    const { status } = level;
-
     switch (status) {
-      case 2: {
+      case LEVEL_STATUSES.SOLVED: {
         this.icon.addClasses(['list-item__icon--solved']);
         this.icon.removeClasses(['list-item__icon--assisted']);
         break;
       }
-      case 1: {
+      case LEVEL_STATUSES.ASSISTED: {
         this.icon.addClasses(['list-item__icon--assisted']);
         this.icon.removeClasses(['list-item__icon--solved']);
         break;
       }
-      case 0:
+      case LEVEL_STATUSES.NOT_SOLVED:
       default: {
         this.icon.removeClasses([
           'list-item__icon--solved',

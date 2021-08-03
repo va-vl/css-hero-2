@@ -9,8 +9,9 @@ export class LevelList extends MyComponent {
    * @property {String[]} classNames classNames from outer component
    * @property {Object[]} levels
    * @property {Function} onTransitionEndCb
+   * @property {Function} onLevelLinkClickCb
    */
-  constructor({ classNames, levels, onTransitionEndCb }) {
+  constructor({ classNames, levels, onTransitionEndCb, onLevelLinkClickCb }) {
     super({
       tagName: 'nav',
       classNames: [...classNames, 'level-list'],
@@ -28,10 +29,12 @@ export class LevelList extends MyComponent {
     });
 
     this.listItems = levels.map(
-      (level) =>
+      (level, index) =>
         new ListItem({
           classNames: ['level-list__list-item'],
+          onClickCb: onLevelLinkClickCb,
           level,
+          index,
         })
     );
 
@@ -51,15 +54,13 @@ export class LevelList extends MyComponent {
    * @param {Object} props
    * @property {Number} currentLevelIndex
    * @property {Object[]} levels
-   * @property {Function} onLevelLinkClickCb
    */
-  render({ levels, currentLevelIndex, onLevelLinkClickCb }) {
+  render({ levels, currentLevelIndex }) {
     this.listItems.forEach((listItem, index) => {
       listItem.render({
         index,
         currentLevelIndex,
-        level: levels[index],
-        onClickCb: onLevelLinkClickCb,
+        status: levels[index].status,
       });
     });
   }

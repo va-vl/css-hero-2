@@ -38,7 +38,7 @@
   animation: wrong 300ms linear;
 
   .CodeMirror {
-    background-color: var(--color-red-transparent);
+    background-color: var(--color-red-transparent) !important;
   }
 }
 

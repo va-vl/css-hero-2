@@ -8,15 +8,16 @@ export class Level extends MyComponent {
   /**
    * @param {Object} props
    * @property {String[]} classNames classNames from outer component
+   * @property {Function} checkAnswerCb check answer
    */
-  constructor({ classNames = [] } = {}) {
+  constructor({ classNames = [], checkAnswerCb } = {}) {
     super({
       classNames: [...classNames, 'level'],
     });
 
     this.currentLevelIndex = null;
     this.display = new Display({ classNames: ['level__display'] });
-    this.code = new Code({ classNames: ['level__code'] });
+    this.code = new Code({ classNames: ['level__code'], checkAnswerCb });
 
     this.appendChildren(this.display, this.code);
   }
@@ -36,8 +37,6 @@ export class Level extends MyComponent {
       iconLevelFragment,
     });
 
-    this.code.render({
-      codeLevelFragment,
-    });
+    this.code.render({ codeLevelFragment });
   }
 }

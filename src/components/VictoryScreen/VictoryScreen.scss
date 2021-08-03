@@ -1,0 +1,29 @@
+.victory-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-overlay);
+  z-index: 20;
+}
+
+.victory-screen__wrapper {
+  width: 60%;
+  background-color: var(--color-background-light);
+  padding: 20px;
+}
+
+.victory-screen__heading {
+  text-align: center;
+}
+
+.victory-screen__close-button {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  display: block;
+}

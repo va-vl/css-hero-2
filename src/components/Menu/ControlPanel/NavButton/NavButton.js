@@ -12,8 +12,9 @@ export class NavButton extends Button {
    * @param {Object} props
    * @property {String[]} classNames
    * @property {String} direction navigation direction
+   * @property {Function} onClickCb
    */
-  constructor({ classNames, direction }) {
+  constructor({ classNames, direction, onClickCb }) {
     super({
       classNames: [...classNames],
       textContent: String.fromCodePoint(
@@ -22,15 +23,15 @@ export class NavButton extends Button {
     });
 
     this.direction = direction;
+    this.HTMLElement.onclick = onClickCb;
   }
 
   /**
    * @param {Object} props
    * @property {Number} currentLevelIndex
    * @property {Number} levelsAmount
-   * @property {Function} onClickCb
    */
-  render({ levelsAmount, currentLevelIndex, onClickCb }) {
+  render({ levelsAmount, currentLevelIndex }) {
     const prevAtStart = currentLevelIndex === 0 && this.direction === 'prev';
     const nextAtEnd =
       currentLevelIndex + 1 === levelsAmount && this.direction === 'next';
@@ -40,7 +41,5 @@ export class NavButton extends Button {
     } else {
       this.removeAttrs(['disabled']);
     }
-
-    this.HTMLElement.onclick = onClickCb;
   }
 }
