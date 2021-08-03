@@ -13,6 +13,7 @@ export class Menu extends MyComponent {
    * @property {Function} setLevelCb callback that changes a level
    * @property {Function} setPrevLevelCb callback that changes a level
    * @property {Function} setNextLevelCb callback that changes a level
+   * @property {Function} resetProgressCb callback that changes a level
    */
   constructor({
     classNames = [],
@@ -21,6 +22,7 @@ export class Menu extends MyComponent {
     setLevelCb,
     setPrevLevelCb,
     setNextLevelCb,
+    resetProgressCb,
   } = {}) {
     super({
       classNames: [...classNames, 'menu'],
@@ -58,6 +60,7 @@ export class Menu extends MyComponent {
       classNames: ['menu__level-list'],
       levels,
       onLevelLinkClickCb: setLevelCb,
+      onResetButtonClickCb: resetProgressCb,
       onTransitionEndCb: onLevelListTransitionEndCb,
     });
 

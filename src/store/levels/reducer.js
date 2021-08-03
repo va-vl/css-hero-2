@@ -1,6 +1,7 @@
 import {
   ANIMATION_START,
   ANIMATION_STOP,
+  RESET_PROGRESS,
   LEVEL_SET,
   LEVEL_UPDATE_STATUS,
   SET_IS_COMPLETED,
@@ -33,7 +34,7 @@ export const levelReducer = (state = initialState, { type, payload }) => {
     case LEVEL_UPDATE_STATUS: {
       const { levelIndex, status } = payload;
       const { levels: storedLevels } = state;
-      const level = levels[levelIndex];
+      const level = storedLevels[levelIndex];
 
       return {
         ...state,
@@ -63,6 +64,14 @@ export const levelReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isCompleted: true,
+      };
+    }
+    case RESET_PROGRESS: {
+      const currentLevelIndex = payload;
+
+      return {
+        ...initialState,
+        currentLevelIndex,
       };
     }
     default: {

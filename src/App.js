@@ -5,6 +5,7 @@ import {
   LEVEL_STATUSES,
   ANIMATION_WRONG_TIMEOUT,
   ANIMATION_SOLVED_TIMEOUT,
+  ANIMATION_AUTOCOMPLETE_TIMEOUT,
 } from '@constants';
 import { Header, Level, Footer, Menu, VictoryScreen } from './components';
 import './App.scss';
@@ -20,6 +21,10 @@ export class App extends MyComponent {
     super({ tagName: 'main', classNames: ['app', 'app__grid'] });
 
     const setLevelCb = (index) => {
+      if (model.isAnimationOn()) {
+        return;
+      }
+
       model.setLevel(index);
     };
 
@@ -33,7 +38,7 @@ export class App extends MyComponent {
       setLevelCb(currentLevelIndex + 1);
     };
 
-    const showWrong = () => {
+    const showWrongAnimation = () => {
       model.setAnimation(ANIMATION_WRONG_TIMEOUT);
       this.level.code.addClasses([CODE_WRONG_CLASS_NAME]);
 
@@ -42,7 +47,7 @@ export class App extends MyComponent {
       }, ANIMATION_SOLVED_TIMEOUT);
     };
 
-    const showCorrect = (targets) => {
+    const showCorrectAnimation = (targets) => {
       targets.forEach((target) => {
         target.classList.add('correct');
       });
@@ -56,7 +61,7 @@ export class App extends MyComponent {
       const { currentLevelIndex, levels } = model.getData();
 
       if (selector.includes('.target')) {
-        showWrong();
+        showWrongAnimation();
         return;
       }
 
@@ -64,7 +69,7 @@ export class App extends MyComponent {
         if (isValidNumber(+selector, levels)) {
           setLevelCb(+selector - 1);
         } else {
-          showWrong();
+          showWrongAnimation();
         }
 
         return;
@@ -86,27 +91,80 @@ export class App extends MyComponent {
             ANIMATION_SOLVED_TIMEOUT
           );
 
-          showCorrect(targets);
+          showCorrectAnimation(targets);
         } else {
-          showWrong();
+          showWrongAnimation();
         }
       } catch (error) {
-        console.log(error);
-        showWrong();
+        showWrongAnimation();
       }
     };
 
-    const onMenuButtonClickCb = () => {
+    const setAutoCompleteCb = () => {
+      if (model.isAnimationOn()) {
+        return;
+      }
+
+      model.startAnimation();
+
+      const { codeMirror } = this.level.code.input;
+      const { currentLevel, currentLevelIndex } = model.getData();
+      const { answer } = currentLevel;
+
+      const animateAutoComplete = (i) => {
+        if (i < answer.length) {
+          codeMirror.setValue(answer.slice(0, i + 1));
+          codeMirror.refresh();
+          setTimeout(() => {
+            animateAutoComplete(i + 1);
+          }, ANIMATION_AUTOCOMPLETE_TIMEOUT);
+          return;
+        }
+
+        codeMirror.execCommand('goLineEnd');
+        codeMirror.focus();
+
+        const targets = [
+          ...this.level.display.chars.HTMLElement.querySelectorAll('.target'),
+        ];
+
+        showCorrectAnimation(targets);
+
+        model.setLevelSolved(
+          currentLevelIndex,
+          LEVEL_STATUSES.ASSISTED,
+          ANIMATION_SOLVED_TIMEOUT
+        );
+      };
+
+      animateAutoComplete(0);
+    };
+
+    const resetProgressCb = () => {
+      if (model.isAnimationOn()) {
+        return;
+      }
+
+      const { currentLevelIndex } = model.getData();
+
+      model.resetProgress(currentLevelIndex);
+    };
+
+    const setMenuActiveCb = () => {
       this.menu.addClasses([MENU_ACTIVE_CLASS_NAME]);
     };
 
-    const header = new Header({ onMenuButtonClickCb });
-    const footer = new Footer({ classNames: ['app__footer'] });
+    const header = new Header({
+      onMenuButtonClickCb: setMenuActiveCb,
+      onHelpButtonClickCb: setAutoCompleteCb,
+    });
 
     this.level = new Level({
       classNames: ['app__level'],
       checkAnswerCb,
     });
+
+    const footer = new Footer({ classNames: ['app__footer'] });
 
     this.menu = new Menu({
       classNames: ['app__menu'],
@@ -115,6 +173,7 @@ export class App extends MyComponent {
       setLevelCb,
       setPrevLevelCb,
       setNextLevelCb,
+      resetProgressCb,
     });
 
     this.render(model);

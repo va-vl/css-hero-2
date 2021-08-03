@@ -10,8 +10,15 @@ export class LevelList extends MyComponent {
    * @property {Object[]} levels
    * @property {Function} onTransitionEndCb
    * @property {Function} onLevelLinkClickCb
+   * @property {Function} onResetButtonClickCb
    */
-  constructor({ classNames, levels, onTransitionEndCb, onLevelLinkClickCb }) {
+  constructor({
+    classNames,
+    levels,
+    onTransitionEndCb,
+    onLevelLinkClickCb,
+    onResetButtonClickCb,
+  }) {
     super({
       tagName: 'nav',
       classNames: [...classNames, 'level-list'],
@@ -44,6 +51,10 @@ export class LevelList extends MyComponent {
       classNames: ['level-list__reset-button'],
       textContent: 'Reset all progress',
     });
+
+    resetButton.HTMLElement.onclick = () => {
+      onResetButtonClickCb();
+    };
 
     this.HTMLElement.ontransitionend = onTransitionEndCb;
 

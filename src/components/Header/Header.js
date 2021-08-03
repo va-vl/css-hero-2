@@ -6,8 +6,9 @@ export class Header extends MyComponent {
   /**
    * @param {Object} props
    * @property {Function} onMenuButtonClickCb
+   * @property {Function} onHelpButtonClickCb
    */
-  constructor({ onMenuButtonClickCb = () => {} } = {}) {
+  constructor({ onMenuButtonClickCb, onHelpButtonClickCb } = {}) {
     super({
       tagName: 'header',
       classNames: ['header'],
@@ -43,6 +44,10 @@ export class Header extends MyComponent {
     const helpButton = new KeyButton({
       classNames: ['header__button', 'header__button--help'],
       textContent: "Help me, I'm stuck!",
+    });
+
+    helpButton.HTMLElement.addEventListener('click', () => {
+      onHelpButtonClickCb();
     });
 
     this.appendChildren(logo, menuButton, helpButton);

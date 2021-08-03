@@ -1,12 +1,12 @@
 import {
   LEVEL_SET,
   LEVEL_UPDATE_STATUS,
+  RESET_PROGRESS,
   ANIMATION_START,
   ANIMATION_STOP,
   SET_IS_COMPLETED,
 } from './actions';
 
-const startAnimationAC = () => ({ type: ANIMATION_START });
 const stopAnimationAC = () => ({ type: ANIMATION_STOP });
 const levelUpdateStatusAC = (levelIndex, status) => ({
   type: LEVEL_UPDATE_STATUS,
@@ -14,20 +14,15 @@ const levelUpdateStatusAC = (levelIndex, status) => ({
 });
 const setIsCompleted = () => ({ type: SET_IS_COMPLETED });
 
-/**
- * @param {Number} newLevelIndex
- * @returns {object} action
- */
+export const startAnimationAC = () => ({
+  type: ANIMATION_START,
+});
+
 export const levelSetAC = (newLevelIndex) => ({
   type: LEVEL_SET,
   payload: newLevelIndex,
 });
 
-/**
- * @param {Number} levelIndex
- * @param {Number} levelStatus
- * @param {Number} animationTimeout
- */
 export const levelSolveAC =
   (levelIndex, levelStatus, animationTimeout) => (dispatch, getState) => {
     dispatch(startAnimationAC());
@@ -64,6 +59,11 @@ export const levelSolveAC =
       dispatch(setIsCompleted());
     }
   };
+
+export const resetProgressAC = (levelIndex) => ({
+  type: RESET_PROGRESS,
+  payload: levelIndex,
+});
 
 export const animateAC = (timeout) => (dispatch) => {
   dispatch(startAnimationAC());

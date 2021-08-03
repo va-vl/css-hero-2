@@ -23,10 +23,6 @@ export class Model {
     this.snapshot = JSON.stringify(this.store.getState());
   }
 
-  isUpdateRequired() {
-    return JSON.stringify(this.store.getState) === this.snapshot;
-  }
-
   isGameCompleted() {
     if (this.snapshot === null) {
       return false;
@@ -59,6 +55,17 @@ export class Model {
     this.store.dispatch(
       levelActionCreators.levelSolveAC(index, status, timeout)
     );
+  }
+
+  /**
+   * @param {Number} levelIndex
+   */
+  resetProgress(levelIndex) {
+    this.store.dispatch(levelActionCreators.resetProgressAC(levelIndex));
+  }
+
+  startAnimation() {
+    this.store.dispatch(levelActionCreators.startAnimationAC());
   }
 
   /**

@@ -7,5 +7,6 @@ export const LEVEL_STATUSES = {
 };
 export const ANIMATION_WRONG_TIMEOUT = 300;
 export const ANIMATION_SOLVED_TIMEOUT = 300;
+export const ANIMATION_AUTOCOMPLETE_TIMEOUT = 50;
 export const BLACK_STAR_CODE_POINT = 9733;
 export const MAX_CODE_LINES = 21;
