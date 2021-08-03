@@ -20,5 +20,17 @@ export const getPersistentState = () => {
  * @param {object} state app state
  */
 export const setPersistentState = (state) => {
-  storage.set(PERSISTENT_STATE_KEY, state);
+  const { isAnimated, isCompleted, currentLevelIndex, levels } = state;
+
+  if (isAnimated) {
+    return;
+  }
+
+  const savedState = {
+    isCompleted,
+    currentLevelIndex,
+    levelProgress: levels.map(({ status }) => status),
+  };
+
+  storage.set(PERSISTENT_STATE_KEY, savedState);
 };

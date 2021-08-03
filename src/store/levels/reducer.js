@@ -6,9 +6,10 @@ import {
   LEVEL_UPDATE_STATUS,
   SET_IS_COMPLETED,
 } from './actions';
+import { getPersistentState } from '../store.service';
 import { levels } from '../../levels';
 
-const initialState = {
+const defaultState = {
   isAnimated: false,
   isCompleted: false,
   currentLevelIndex: 0,
@@ -18,11 +19,29 @@ const initialState = {
   })),
 };
 
+const getInitialState = () => {
+  const stored = getPersistentState();
+
+  if (stored === undefined) {
+    return defaultState;
+  }
+
+  return {
+    ...defaultState,
+    currentLevelIndex: stored.currentLevelIndex,
+    isCompleted: stored.isCompleted,
+    levels: defaultState.levels.map((level, index) => ({
+      ...level,
+      status: stored.levelProgress[index],
+    })),
+  };
+};
+
 /**
  * @param {object} state
  * @param {object} payload
  */
-export const levelReducer = (state = initialState, { type, payload }) => {
+export const levelReducer = (state = getInitialState(), { type, payload }) => {
   switch (type) {
     case LEVEL_SET: {
       return {
@@ -70,7 +89,7 @@ export const levelReducer = (state = initialState, { type, payload }) => {
       const currentLevelIndex = payload;
 
       return {
-        ...initialState,
+        ...defaultState,
         currentLevelIndex,
       };
     }

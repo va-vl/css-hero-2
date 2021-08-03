@@ -1,11 +1,10 @@
 import { MyRedux, MyThunk } from '@lib';
 import { levelReducer } from './levels/reducer';
-import { getPersistentState, setPersistentState } from './store.service';
+import { setPersistentState } from './store.service';
 
 const store = MyRedux.createStore({
   reducer: levelReducer,
   middleware: MyRedux.applyMiddleware(MyThunk),
-  preloader: getPersistentState,
 });
 
 store.subscribe(() => {
