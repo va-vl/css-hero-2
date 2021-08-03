@@ -1,7 +1,8 @@
 version: '3.9'
 services:
   web:
-    image: 14.17-alpine3.11
+    build:
+      context: ./
     ports:
       - 8080:8080
     working_dir: /app
@@ -10,4 +11,4 @@ services:
     environment:
       NODE_ENV: development
       HOST: 0.0.0.0
-    command: sh -c "cd /app; yarn install; yarn run start:dev --host 0.0.0.0"
+    command: 'yarn run start:dev --host 0.0.0.0'

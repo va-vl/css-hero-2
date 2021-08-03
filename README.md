@@ -8,6 +8,8 @@
 
 ## #About
 
+Demo:
+
 Beat the game by entering correct CSS selectors. Fun for the whole family!
 
 A clone of [CSS Diner](https://flukeout.github.io).
@@ -20,15 +22,26 @@ Clone repository or download the zip archive.
 
 ### Run in dev mode
 
-1. Run locally
-2. Run with Docker
+There are two ways to tun the app. Open `https://localhost:8080` to see the app running in dev mode.
 
-### Run build
+#### Locally
 
-To run the `build`, install `http-server` globally first:
+`yarn run start`
 
-```
-npm install --global http-server
-```
+If `cross-env` package is not found, simply run `yarn` and try again.
 
-Then run `yarn start:build`, then open `http://localhost:8080` in your browser.
+#### With Docker
+
+`docker-compose up --build`
+
+### Run in production mode
+
+To run the compiled app build:
+
+1. `npm install --global http-server` - install **http-server** globally (unless you have it already);
+2. `yarn run build`;
+3. `yarn run serve`;
+
+Check the app running on `http://localhost:8080` in your browser.
+
+If `cross-env` package is not found, simply run `yarn` and try again.
