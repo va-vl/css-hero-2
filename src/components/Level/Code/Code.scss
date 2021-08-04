@@ -1,0 +1,52 @@
+@keyframes wrong {
+  10% {
+    transform: translateX(10px) scaleX(0.98);
+  }
+  30% {
+    transform: translateX(-10px) scaleX(0.98);
+  }
+  50% {
+    transform: translateX(10px) scaleX(0.98);
+  }
+  70% {
+    transform: translateX(-10px) scaleX(0.98);
+  }
+  90% {
+    transform: translateX(10px) scaleX(0.98);
+  }
+}
+
+.code {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 14px;
+  color: var(--color-font-light);
+}
+
+.code__flex-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  box-sizing: border-box;
+  min-width: 600px;
+  margin: 20px auto;
+  border-radius: 15px;
+  border: 7px solid var(--color-background-darker);
+  background-color: var(--color-background-darker);
+}
+
+.code--wrong {
+  animation: wrong 300ms linear;
+
+  .CodeMirror {
+    background-color: var(--color-red-transparent) !important;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .code__flex-wrapper {
+    width: 100%;
+    border: none;
+    min-width: 490px;
+    box-shadow: 0 3px 10px -3px var(--color-background-darkest);
+  }
+}

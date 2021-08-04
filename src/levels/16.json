@@ -1,0 +1,41 @@
+{
+  "title": "Save the Brown Wolf (1)",
+  "description": "<p>Did you see that?</p><p>Those were <b>Brown Wolves</b>. They are peaceful animals.</p><p>A Brown Wolf can turn nearby wolves, boars and even some orcs to our side. But, they cannot win in a fight against a Red Wolf, so they must be protected.</p><p>This Brown Wolf is about to die! Select the Red Wolf that stands directly next to a Brown Wolf using the <b>adjacent sibling CSS selector</b>:</p><p><code>element1 + element2</code></p>",
+  "answer": "wolf[color=brown] + wolf",
+  "layout": [
+    {
+      "tagName": "wolf",
+      "attrs": {
+        "color": "red"
+      },
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "classNames": ["big"]
+    },
+    {
+      "tagName": "wolf",
+      "attrs": {
+        "color": "brown"
+      },
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["target"],
+      "attrs": {
+        "color": "red"
+      },
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "children": []
+    }
+  ]
+}

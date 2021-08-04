@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@lib": ["src/lib"],
+      "@images": ["src/assets/images"],
+      "@constants": ["src/constants"],
+      "@components/common": ["src/components/_common"]
+    }
+  }
+}

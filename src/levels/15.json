@@ -1,0 +1,33 @@
+{
+  "title": "Scout the forest",
+  "description": "<p>This was a tough battle, but we held our own. Many of our men fell, we will not withstand another fight like this.</p><p>You must investigate the forest and see if there's anything suspicious.</p><p>Attack only if your life depends on it/</p><p>Use the <b>CSS id selector</b>:</p><p><code>#id</code></p>",
+  "answer": "#aggressor",
+  "layout": [
+    {
+      "tagName": "wolf",
+      "attrs": {
+        "color": "brown"
+      },
+      "children": [
+        {
+          "tagName": "archer"
+        }
+      ]
+    },
+    {
+      "tagName": "wolf",
+      "children": [
+        {
+          "tagName": "orc"
+        }
+      ]
+    },
+    {
+      "tagName": "archer",
+      "classNames": ["target"],
+      "attrs": {
+        "id": "aggressor"
+      }
+    }
+  ]
+}

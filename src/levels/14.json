@@ -1,0 +1,23 @@
+{
+  "title": "Take down the Orc King",
+  "description": "<p>Their lines are thinning, victory is almost ours!</p><p>We can now see this raid's leaders: an Orc King, surrounded by his Orc Chief generals! The King looks just like them, but his arrogant demeanor gives him away.</p><p>Don't hesitate you, strike the Chief's black heart!</p><p>Use the <b>:nth-last-child() pseudo-class</b>.</p>",
+  "answer": "chief:nth-last-child(2)",
+  "layout": [
+    {
+      "tagName": "chief"
+    },
+    {
+      "tagName": "chief"
+    },
+    {
+      "tagName": "chief"
+    },
+    {
+      "tagName": "chief",
+      "classNames": ["target"]
+    },
+    {
+      "tagName": "chief"
+    }
+  ]
+}

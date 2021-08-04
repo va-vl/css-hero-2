@@ -1,0 +1,39 @@
+@keyframes blink {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: var(--color-highlight);
+  }
+}
+
+.CodeMirror {
+  line-height: 14px;
+  margin-right: 10px;
+  height: 21px;
+  flex-grow: 1;
+  background-color: transparent;
+
+  .CodeMirror-placeholder {
+    opacity: 0.5;
+  }
+
+  .CodeMirror-scroll {
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .CodeMirror-sizer {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+}
+
+.CodeMirror-empty {
+  animation: blink 300ms ease infinite alternate;
+}

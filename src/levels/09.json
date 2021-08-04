@@ -1,0 +1,36 @@
+{
+  "title": "Shoot wolf archers",
+  "description": "<p>Look out for the mounted archers! They swiftly attack and pull back. Slay them before they damage us.</p><p>Strike the archers riding wolves with the <b>CSS child selectors</b>:</p><p><code>element1 > element 2</code></p><p>Hint: be precise with your attack. Simply selecting every enemy will not work.</p>",
+  "answer": "wolf > archer",
+  "layout": [
+    {
+      "tagName": "archer"
+    },
+    {
+      "tagName": "wolf",
+      "children": [
+        {
+          "tagName": "orc"
+        }
+      ]
+    },
+    {
+      "tagName": "wolf",
+      "children": [
+        {
+          "tagName": "archer",
+          "classNames": ["target"]
+        }
+      ]
+    },
+    {
+      "tagName": "wolf",
+      "children": [
+        {
+          "tagName": "archer",
+          "classNames": ["target"]
+        }
+      ]
+    }
+  ]
+}

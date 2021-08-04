@@ -1,0 +1,35 @@
+{
+  "title": "Strike down the Red Wolf",
+  "description": "<p>The wolves are back, and they mean business. This pack is huge, but we don't need to fight all of it.</p><p>The Red Wolf if the alpha of the pack. Strike him down, and all other wolves will flee!</p><p>Make use of the <b>CSS attribute selector</b>:</p><p></p><p><code>element[attribute=value]</code></p><p>Hint: make sure your target is red.</p>",
+  "answer": "wolf[color=red]",
+  "layout": [
+    {
+      "tagName": "wolf",
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["target"],
+      "attrs": {
+        "color": "red"
+      },
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "children": []
+    }
+  ]
+}

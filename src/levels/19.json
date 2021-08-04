@@ -1,0 +1,45 @@
+{
+  "title": "Save the Blue Wizard",
+  "description": "<p>Look, a wizard! We must be getting close to our goal.</p><p>Like Brown Wolves, Blue Wizards are good. This Blue Wizard is under attack! We must save him.</p><p>Use the knowledge you've gained to strike all aggressive creatures.</p>",
+  "answer": "boar, wolf, orc, archer, chief",
+  "layout": [
+    {
+      "tagName": "boar",
+      "classNames": ["target"],
+      "children": []
+    },
+    {
+      "tagName": "wizard",
+      "attrs": {
+        "color": "blue"
+      }
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["big", "target"],
+      "attrs": {
+        "color": "red"
+      },
+      "children": [
+        {
+          "tagName": "chief",
+          "classNames": ["target"]
+        }
+      ]
+    },
+    {
+      "tagName": "archer",
+      "classNames": ["target"]
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["target"],
+      "children": [
+        {
+          "tagName": "orc",
+          "classNames": ["target"]
+        }
+      ]
+    }
+  ]
+}

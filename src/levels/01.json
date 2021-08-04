@@ -1,0 +1,12 @@
+{
+  "title": "Slay the wolf",
+  "description": "<p>There is a wolf in our town! Don't let him anywhere near us!</p><p>Strike the wolf using the <b>element CSS selector</b>:<p><code>element</code></p>",
+  "answer": "wolf",
+  "layout": [
+    {
+      "tagName": "wolf",
+      "classNames": ["target"],
+      "children": []
+    }
+  ]
+}

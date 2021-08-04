@@ -1,0 +1,28 @@
+.input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 21px;
+}
+
+.input__textarea {
+  width: 100%;
+  margin-right: 10px;
+  line-height: 21px;
+
+  border: none;
+  background-color: transparent;
+  outline: none;
+  resize: none;
+
+  white-space: nowrap;
+  overflow: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::placeholder {
+    line-height: 21px;
+  }
+}

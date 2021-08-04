@@ -1,0 +1,143 @@
+@keyframes target {
+  0% {
+    transform: scale(1.1, 0.9);
+  }
+  20% {
+    transform: scale(0.85, 1.15);
+  }
+  70% {
+    transform: translateY(-0.5vmin);
+  }
+  100% {
+    transform: scale(1.1, 0.9);
+  }
+}
+
+@keyframes correct {
+  70% {
+    transform: translateY(-5vmin) scale(1.1);
+  }
+  100% {
+    transform: translateY(-3vmin) scale(1.5);
+    opacity: 0;
+  }
+}
+
+wolf {
+  background-image: url('../../../assets/images/characters/wolf.png');
+
+  &[color='red'] {
+    background-image: url('../../../assets/images/characters/wolf_red.png');
+  }
+
+  &[color='brown'] {
+    background-image: url('../../../assets/images/characters/wolf_brown.png');
+  }
+}
+
+boar {
+  background-image: url('../../../assets/images/characters/boar.png');
+}
+
+orc {
+  background-image: url('../../../assets/images/characters/orc_warrior.png');
+}
+
+archer {
+  background-image: url('../../../assets/images/characters/orc_archer.png');
+}
+
+chief {
+  background-image: url('../../../assets/images/characters/orc_chief.png');
+}
+
+wizard {
+  &[color='ruby'] {
+    background-image: url('../../../assets/images/characters/wizard_red.png');
+  }
+
+  &[color='blue'] {
+    background-image: url('../../../assets/images/characters/wizard_blue.png');
+  }
+}
+
+wolf,
+boar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 4vmin;
+
+  orc,
+  archer,
+  chief,
+  wizard {
+    flex-shrink: 0;
+    margin-top: 0;
+  }
+}
+
+.big {
+  width: 10vmin;
+  height: 10vmin;
+}
+
+.char--hover {
+  position: relative;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 7vmin;
+    height: 7vmin;
+
+    background-color: var(--color-red-transparent);
+    border: 0.6vmin solid var(--color-red-transparent);
+    border-radius: 50%;
+    z-index: -1;
+  }
+}
+
+chief.char--hover,
+.big.char--hover {
+  &::before {
+    width: 10vmin;
+    height: 10vmin;
+  }
+}
+
+.char__code {
+  padding-left: 15px;
+  user-select: none;
+
+  &--hover {
+    color: var(--color-red);
+
+    * {
+      color: var(--color-red);
+    }
+  }
+}
+
+.char__tooltip {
+  padding: 1vmin;
+  border-radius: 100px;
+  font-weight: 800;
+  color: var(--color-font-light);
+  background-color: var(--color-background-dark);
+  box-shadow: 3px 3px 5px -3px var(--color-overlay);
+}
+
+.target {
+  transform-origin: bottom;
+  animation: target 1000ms ease infinite;
+}
+
+.correct {
+  animation: correct 200ms linear forwards;
+}

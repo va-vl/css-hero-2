@@ -1,0 +1,20 @@
+{
+  "title": "Put down away the orc handler",
+  "description": "<p>I've got some bad news - the orcish wolf handler has been spotted nearby.</p><p>This might mean one of two things: either he's an exile, driven mad by vengeance, or there is a larger squad of these coming through</p><p>Either way, we can't let him be. You should know how to manage him by now.</p>",
+  "answer": "orc",
+  "layout": [
+    {
+      "tagName": "wolf",
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["big"],
+      "children": []
+    },
+    {
+      "tagName": "orc",
+      "classNames": ["target"]
+    }
+  ]
+}

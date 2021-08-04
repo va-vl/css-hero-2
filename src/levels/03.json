@@ -1,0 +1,24 @@
+{
+  "title": "Hunt the Big Boar",
+  "description": "<p>Our scouts have found a huge boar deep in the forest.</p><p>His tusks must be worth a fortune!</p><p>Boars usually travel in groups. Eliminating the entire group will break the balance of nature, so we should only hunt the big guy.</p><p>Get the Big Boar using the <b>CSS class selector</b>:</p><p><code>element.class</code></p>",
+  "answer": "boar.big",
+  "layout": [
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "classNames": ["big", "target"],
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    }
+  ]
+}

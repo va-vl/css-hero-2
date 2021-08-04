@@ -1,0 +1,28 @@
+{
+  "title": "Break the formation (1)",
+  "description": "<p>Now that the archers' raid has failed, the orcs are trying to mow us down with lines of axemen.</p><p>Break their formation and crush their spirit!</p><p>Use the <b>:nth-of-type() pseudo-class</b> to select each oddly-positioned orc:</p><p><code>element:nth-of-type()</code></p><p>Hint: there are two ways to do it. Either use the 'odd' keyword, or write in a <i>2n + 1</i> equation.</p>",
+  "answer": "orc:nth-of-type(odd)",
+  "layout": [
+    {
+      "tagName": "orc",
+      "classNames": ["target"]
+    },
+    {
+      "tagName": "orc"
+    },
+    {
+      "tagName": "orc",
+      "classNames": ["target"]
+    },
+    {
+      "tagName": "orc"
+    },
+    {
+      "tagName": "orc",
+      "classNames": ["target"]
+    },
+    {
+      "tagName": "orc"
+    }
+  ]
+}

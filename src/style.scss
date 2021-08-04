@@ -1,0 +1,45 @@
+@use './sass/colors.scss';
+@use './sass/fonts.scss';
+
+html {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  color: var(--color-font-dark);
+  background-color: var(--color-background-main);
+  scroll-behavior: smooth;
+}
+
+p {
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-red-transparent);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-red);
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+// tablet width
+@media (max-width: $width-tablet) {
+  html {
+    font-size: 14px;
+  }
+}

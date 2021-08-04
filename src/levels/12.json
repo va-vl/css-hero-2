@@ -1,0 +1,32 @@
+{
+  "title": "Break the formation (3)",
+  "description": "<p>The boars are charging! Take out the boar controlled by the orc handler, and the rest will flee.</p><p>Use the <b>:first-child pseudo-class</b> the target boars.</p>",
+  "answer": "boar:first-child",
+  "layout": [
+    {
+      "tagName": "boar",
+      "classNames": ["target"],
+      "children": [
+        {
+          "tagName": "orc"
+        }
+      ]
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    },
+    {
+      "tagName": "boar",
+      "children": []
+    }
+  ]
+}

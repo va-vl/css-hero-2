@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.header__logo {
+  width: 70px;
+  height: 45px;
+  margin: 0;
+  user-select: none;
+}
+
+.header__logo-fancy {
+  display: block;
+
+  color: var(--color-red);
+  font-family: 'MedievalSharp';
+  text-transform: uppercase;
+}
+
+.header__logo-plain {
+  display: block;
+
+  text-align: center;
+  font-size: 0.5em;
+  letter-spacing: 0.35em;
+  line-height: 0.3em;
+}
+
+.header__button {
+  height: 21px;
+
+  &--menu {
+    display: none;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .header__logo {
+    width: 60px;
+    height: 40px;
+  }
+
+  .header__button {
+    &--menu {
+      display: block;
+    }
+  }
+}

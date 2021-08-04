@@ -1,0 +1,23 @@
+.button__key {
+  width: auto;
+  height: auto;
+  margin: 0;
+
+  background-color: var(--color-font-light-transparent);
+  padding: 0 10px;
+
+  font-family: 'Source Code Pro', monospace;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--color-font-light);
+
+  border-radius: 5px;
+  border-bottom: 3px solid var(--color-font-light);
+
+  transition: transform 50ms ease;
+
+  &:hover,
+  &:focus {
+    color: var(--color-font-dark);
+  }
+}

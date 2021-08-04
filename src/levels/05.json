@@ -1,0 +1,31 @@
+{
+  "title": "Slay the Big Red Wolf",
+  "description": "<p>There's two more of them, but one is significantly bigger.</p><p>Take down the Big Red Wolf, and see if others run away.</p><p>Combine the class and attribute selectors to strike the foe!</p><p><code>element.class[attribute=value]</code></p>",
+  "answer": "wolf.big[color=red]",
+  "layout": [
+    {
+      "tagName": "wolf",
+      "attrs": {
+        "color": "red"
+      },
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["big"],
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "classNames": ["big", "target"],
+      "attrs": {
+        "color": "red"
+      },
+      "children": []
+    },
+    {
+      "tagName": "wolf",
+      "children": []
+    }
+  ]
+}

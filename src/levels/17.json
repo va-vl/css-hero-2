@@ -1,0 +1,32 @@
+{
+  "title": "Save the Brown Wolf (2)",
+  "description": "<p>This Brown Wolf is enslaved by the two archers. Set the Wolf free and turn and orc on our side using the <b>general sibling CSS combinator</b>:</p><p><code>element ~ element</code></p>",
+  "answer": "orc ~ archer",
+  "layout": [
+    {
+      "tagName": "archer"
+    },
+    {
+      "tagName": "wolf",
+      "attrs": {
+        "color": "brown"
+      },
+      "children": [
+        {
+          "tagName": "orc"
+        },
+        {
+          "tagName": "archer",
+          "classNames": ["target"]
+        },
+        {
+          "tagName": "archer",
+          "classNames": ["target"]
+        }
+      ]
+    },
+    {
+      "tagName": "orc"
+    }
+  ]
+}

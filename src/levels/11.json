@@ -1,0 +1,28 @@
+{
+  "title": "Break the formation (2)",
+  "description": "<p>Stay the course! Keep charging!</p><p>This time, attack each evenly-positioned archer.</p><p>Hint: there are two ways to do it. Either use the 'even' keyword, or write in an <i>n + 1</i> equation.</p>",
+  "answer": "archer:nth-of-type(even)",
+  "layout": [
+    {
+      "tagName": "archer"
+    },
+    {
+      "tagName": "archer",
+      "classNames": ["target"]
+    },
+    {
+      "tagName": "archer"
+    },
+    {
+      "tagName": "archer",
+      "classNames": ["target"]
+    },
+    {
+      "tagName": "archer"
+    },
+    {
+      "tagName": "archer",
+      "classNames": ["target"]
+    }
+  ]
+}
