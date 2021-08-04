@@ -8,7 +8,7 @@
 
 ## #About
 
-Demo:
+Demo: https://css-hero-2.netlify.app
 
 Beat the game by entering correct CSS selectors. Fun for the whole family!
 
@@ -26,7 +26,7 @@ There are two ways to tun the app. Open `https://localhost:8080` to see the app 
 
 #### Locally
 
-`yarn run start`
+`yarn run dev`
 
 If `cross-env` package is not found, simply run `yarn` and try again.
 
