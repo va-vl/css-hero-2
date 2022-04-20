@@ -26,7 +26,7 @@ There are two ways to tun the app. Open `https://localhost:8080` to see the app 
 
 #### Locally
 
-`yarn run dev`
+`yarn run start`
 
 If `cross-env` package is not found, simply run `yarn` and try again.
 

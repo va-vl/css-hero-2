@@ -11,4 +11,4 @@ services:
     environment:
       NODE_ENV: development
       HOST: 0.0.0.0
-    command: 'yarn run dev --host 0.0.0.0'
+    command: 'yarn run start --host 0.0.0.0'

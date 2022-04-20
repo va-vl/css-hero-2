@@ -27,7 +27,7 @@ export class Footer extends MyComponent {
       tagName: 'a',
       classNames: ['footer__github-link'],
       attrs: {
-        href: 'https://github.com/va-z/css-hero-2',
+        href: 'https://github.com/va-vl/css-hero-2',
         target: '_blank',
       },
       children: [githubImage],
@@ -35,7 +35,7 @@ export class Footer extends MyComponent {
 
     const footerText = new MyComponent({
       tagName: 'p',
-      textContent: 'Made by va-z in 2021',
+      textContent: 'Made by va-vl in 2021',
     });
 
     this.appendChildren(githubLink, footerText);
